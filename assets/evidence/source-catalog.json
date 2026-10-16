@@ -1,0 +1,216 @@
+{
+  "schemaVersion": 1,
+  "inspectedOn": "2026-10-15",
+  "sourceSnapshotCommit": "e976ab777d9ed067fb23a99ad6b2e4f280511348",
+  "meaning": "Content identities of selected source files inspected for this case study. This commit is not the version of every historical run. Private reports are not published in full. Hashes identify inputs; they do not prove test success.",
+  "sources": [
+    {
+      "id": "S01",
+      "label": "Current written product contract",
+      "kind": "design",
+      "sha256": "26aa9365fe1e44123a47a0e2399fec7aefeadb09b166d57ac00f2bfd2cd35006",
+      "bytes": 79020,
+      "sourceRelativePath": "docs/current-mvp/product-contract.md"
+    },
+    {
+      "id": "S02",
+      "label": "Architecture V2.1 and dated amendments",
+      "kind": "design",
+      "sha256": "4ec4e7879928bed43d25da74db4421c1d20bc5b5949e714e83fb6919653adba5",
+      "bytes": 74183,
+      "sourceRelativePath": "docs/current-mvp/architecture.md"
+    },
+    {
+      "id": "S03",
+      "label": "D00 navigation and responsibility boundaries",
+      "kind": "design",
+      "sha256": "25c031dfb7882e9a77ac8022699d5bfecd4d2a715174f26ec5a75904152746dc",
+      "bytes": 14187,
+      "sourceRelativePath": "diagrams/cli-mvp-modules-v2-20260908/d00-navigation/README.md"
+    },
+    {
+      "id": "S04",
+      "label": "Core diagram notes and later amendments",
+      "kind": "design",
+      "sha256": "7b1f9f9514d5b04a3dfde1e11524790d2c53fefd11b12590230b3d908c189d9f",
+      "bytes": 18501,
+      "sourceRelativePath": "diagrams/cli-mvp-modules-v2-20260908/core/README.md"
+    },
+    {
+      "id": "S05",
+      "label": "B01 state ownership view",
+      "kind": "design",
+      "sha256": "1d241d2e85c5f513e80e6dcdbe3e79a50dfabca3f469065bcae17760edd1b6dc",
+      "bytes": 2672,
+      "sourceRelativePath": "diagrams/cli-mvp-modules-v2-20260908/core/B01-core-state-ownership.mmd"
+    },
+    {
+      "id": "S06",
+      "label": "B02 scheduling view",
+      "kind": "design",
+      "sha256": "2914b6c1c2af1f9618e6465b491d21400711d74aa8e74dc7b9b4fbd25d3b9274",
+      "bytes": 5250,
+      "sourceRelativePath": "diagrams/cli-mvp-modules-v2-20260908/core/B02-normal-competition.mmd"
+    },
+    {
+      "id": "S07",
+      "label": "B03 uncertainty view",
+      "kind": "design",
+      "sha256": "d317ecd4c66c40ac1a38aead4e9abe44ad325eb35e9959ce2e2f9a8d55ddb413",
+      "bytes": 3165,
+      "sourceRelativePath": "diagrams/cli-mvp-modules-v2-20260908/core/B03-unknown-account-hold-recovery.mmd"
+    },
+    {
+      "id": "S08",
+      "label": "B04 control and recovery view",
+      "kind": "design",
+      "sha256": "b0626ef793d16a47ae7d4490ce9cef9a648efdecd2c3baec7acb9ab8f29884f0",
+      "bytes": 3764,
+      "sourceRelativePath": "diagrams/cli-mvp-modules-v2-20260908/core/B04-stop-crash-restart.mmd"
+    },
+    {
+      "id": "S09",
+      "label": "CLI package manifest",
+      "kind": "implementation",
+      "sha256": "15fa17515dc99bb98aa6bde2c34d69d300e1418fe0133a93963c9c6cc2f6bddf",
+      "bytes": 538,
+      "sourceRelativePath": "packages/booking-cli/package.json"
+    },
+    {
+      "id": "S10",
+      "label": "Pure wake-planning and clock helpers",
+      "kind": "implementation",
+      "sha256": "8188fd3732fa7112a3160a69b4181796dc6d10366a892170318a3f9b2a73d43f",
+      "bytes": 1753,
+      "sourceRelativePath": "packages/booking-cli/lib/core/wakeup-plan.mjs"
+    },
+    {
+      "id": "S11",
+      "label": "Campaign scheduler implementation",
+      "kind": "implementation",
+      "sha256": "d758ae4fb0d87badacb485c9d3aa3c3e12c1bcdc7a6c35209b40658000baee57",
+      "bytes": 132705,
+      "sourceRelativePath": "packages/booking-cli/lib/core/campaign-scheduler.mjs"
+    },
+    {
+      "id": "S12",
+      "label": "Shared dispatch gate implementation",
+      "kind": "implementation",
+      "sha256": "dc4a2d7cc94462d7ceca3118b0d5ece7eec9314d6d848f96a7dd55252bd03313",
+      "bytes": 48154,
+      "sourceRelativePath": "packages/booking-cli/lib/foundation/send-gate.mjs"
+    },
+    {
+      "id": "S13",
+      "label": "Attempt facts and terminal evaluation",
+      "kind": "implementation",
+      "sha256": "a15cc27a1684551f4fb9f631da832c4e44ab090e1e3178c751e7fb6d2ad6d65e",
+      "bytes": 18994,
+      "sourceRelativePath": "packages/booking-cli/lib/attempt/attempt.mjs"
+    },
+    {
+      "id": "S14",
+      "label": "Acceptance boundary implementation",
+      "kind": "implementation",
+      "sha256": "24b0569864adae41e81f605a930d5ca01abdde6ea5acddf3672a9783059329cb",
+      "bytes": 26334,
+      "sourceRelativePath": "packages/booking-cli/lib/control/acceptance.mjs"
+    },
+    {
+      "id": "S15",
+      "label": "Reconciliation and continuation orchestration",
+      "kind": "implementation",
+      "sha256": "0ec373a17208e3ae8c28145b1302f369d6229b43683efeb096890c42315070c8",
+      "bytes": 10295,
+      "sourceRelativePath": "packages/booking-cli/lib/core/resume-continue.mjs"
+    },
+    {
+      "id": "S16",
+      "label": "Lost-ACK and output-failure test definitions",
+      "kind": "test-definition",
+      "sha256": "5bab3aea53b6800e40202d8423d5c35c54e6fb5794a458c1ca7a6c25689f94be",
+      "bytes": 18880,
+      "sourceRelativePath": "packages/booking-cli/tests/recovery-output.test.mjs"
+    },
+    {
+      "id": "S17",
+      "label": "Wake, clock and timing test definitions",
+      "kind": "test-definition",
+      "sha256": "0af3179bfe65a2fe107960d53e9add0d7b9c5c6e70187837d12f5c785f6951b0",
+      "bytes": 18932,
+      "sourceRelativePath": "packages/booking-cli/tests/step1-timing-evidence.test.mjs"
+    },
+    {
+      "id": "S18",
+      "label": "Scheduling test definitions",
+      "kind": "test-definition",
+      "sha256": "d5317137e7179bfa26cd1b931b7eb8b3fdb02f6d366da3e8d2c2c013c37c64ca",
+      "bytes": 17123,
+      "sourceRelativePath": "packages/booking-cli/tests/w3b-b02-scheduling.test.mjs"
+    },
+    {
+      "id": "S19",
+      "label": "Resume/continue test definitions",
+      "kind": "test-definition",
+      "sha256": "1464fd8a9bf765a6cbb400458d9b9fcc7c42e6b610710c2a4759f05c4c63c4c2",
+      "bytes": 62361,
+      "sourceRelativePath": "packages/booking-cli/tests/w4c-resume-continue.test.mjs"
+    },
+    {
+      "id": "S20",
+      "label": "Historical A3 acceptance summary",
+      "kind": "historical-summary",
+      "sha256": "ad5d32d78d64a1e99692550004cc51a171edd5bc94cc88f891b9fb8730973a94",
+      "bytes": 1257,
+      "sourceRelativePath": "docs/implementation/evidence/route-a-a3-20260920/acceptance-summary.json"
+    },
+    {
+      "id": "S21",
+      "label": "Historical A3 report, including earlier failures",
+      "kind": "historical-report",
+      "sha256": "672c5b3ce5de9f49bcd6a7de28e03421cc0b739f63b1b688bea8e021e2798c5e",
+      "bytes": 16937,
+      "sourceRelativePath": "docs/implementation/W5-G1-preflight-independent-acceptance.md"
+    },
+    {
+      "id": "S22",
+      "label": "Historical Direct controlled-run report, 2026-09-28",
+      "kind": "historical-report",
+      "sha256": "07a8e1f0b0818efdf49576341e16d4a6457d15964f06089f77f1d01e99e4223f",
+      "bytes": 2413,
+      "locatorPolicy": "Private runtime locator omitted; selected report summarized separately."
+    },
+    {
+      "id": "S23",
+      "label": "Historical Direct installation pairing report",
+      "kind": "historical-report",
+      "sha256": "88eacdf337243dc96fd1ab502b54dcdf9bc69b0850f5853879bc789f3ce8a20a",
+      "bytes": 1902,
+      "locatorPolicy": "Private runtime locator omitted; selected report summarized separately."
+    },
+    {
+      "id": "S24",
+      "label": "Historical HouBu controlled-run report, including correction",
+      "kind": "historical-report",
+      "sha256": "d017410172a5f8410fa2a77bc45d6c70b66c79dcde6df5a0f94441e7b056e57f",
+      "bytes": 3416,
+      "locatorPolicy": "Private runtime locator omitted; selected report summarized separately."
+    },
+    {
+      "id": "S25",
+      "label": "Historical HouBu selective run evidence",
+      "kind": "historical-summary",
+      "sha256": "33ec7ab98a15afde4dd7c52eb3cbd06eef8ed1dc26533df5e93d25b19bb53be3",
+      "bytes": 5082,
+      "locatorPolicy": "Private runtime locator omitted; selected report summarized separately."
+    },
+    {
+      "id": "S26",
+      "label": "Historical HouBu installation pairing report",
+      "kind": "historical-report",
+      "sha256": "c4bd24d78b9c50e1818312c744f6eb61dc0cb410a827c36c078db5e9081740ec",
+      "bytes": 4463,
+      "locatorPolicy": "Private runtime locator omitted; selected report summarized separately."
+    }
+  ]
+}

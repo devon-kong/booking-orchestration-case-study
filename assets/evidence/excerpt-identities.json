@@ -1,0 +1,16 @@
+{
+  "sourceId": "S10",
+  "sourceFileSha256": "8188fd3732fa7112a3160a69b4181796dc6d10366a892170318a3f9b2a73d43f",
+  "excerpts": [
+    {
+      "function": "computeNextWakeDelay",
+      "sha256": "65a6c05f538a7e96c3229608496997a6a57810cd8cc02f4d5fa8edb1e15ab2e9",
+      "form": "verbatim function; surrounding comments omitted"
+    },
+    {
+      "function": "classifyClockTransition",
+      "sha256": "d3d3688c78bb80d8f72389fd368ee91f4fb5c5201ca349425a11f221f0b30937",
+      "form": "verbatim function; surrounding comments omitted"
+    }
+  ]
+}

@@ -1,0 +1,249 @@
+{
+  "schemaVersion": 1,
+  "result": "PASS",
+  "checkedAt": "2026-10-15T15:17:03.173Z",
+  "runtime": "v26.8.2",
+  "verificationScope": "Public case-study consistency and two published pure functions; not private product or online validation.",
+  "checksPassed": 130,
+  "failures": [],
+  "relativeLinksChecked": 64,
+  "pureFunctionCases": 17,
+  "pureFunctionResults": [
+    {
+      "name": "wake: nearby deadline shortens poll",
+      "pass": true
+    },
+    {
+      "name": "wake: overdue deadline is immediately due",
+      "pass": true
+    },
+    {
+      "name": "wake: distant deadline is capped",
+      "pass": true
+    },
+    {
+      "name": "wake: no deadlines retains poll",
+      "pass": true
+    },
+    {
+      "name": "wake: nearest finite deadline wins",
+      "pass": true
+    },
+    {
+      "name": "wake: invalid wall sample is refused",
+      "pass": true
+    },
+    {
+      "name": "wake: zero poll is refused",
+      "pass": true
+    },
+    {
+      "name": "wake: infinite poll is refused",
+      "pass": true
+    },
+    {
+      "name": "clock: initial sample makes no jump claim",
+      "pass": true
+    },
+    {
+      "name": "clock: equal progress is ordinary",
+      "pass": true
+    },
+    {
+      "name": "clock: forward jump is uncertain",
+      "pass": true
+    },
+    {
+      "name": "clock: backward jump is uncertain",
+      "pass": true
+    },
+    {
+      "name": "clock: exact jump threshold is allowed",
+      "pass": true
+    },
+    {
+      "name": "clock: monotonic regression is distinct",
+      "pass": true
+    },
+    {
+      "name": "clock: long consistent pause is distinct",
+      "pass": true
+    },
+    {
+      "name": "clock: exact pause threshold is not resumed",
+      "pass": true
+    },
+    {
+      "name": "clock: nonfinite difference is uncertain",
+      "pass": true
+    }
+  ],
+  "diagramExports": [
+    {
+      "name": "01-user-journey",
+      "sourceSha256": "48363805e8e6fa72e0c72fb8fa1fbc487eeb272f7c40dec970fd3c9714988064",
+      "svgSha256": "70798208ef08e5f18d1eaf093f51a4b8ffe4a3f30072ae83178febf78e8d7c13",
+      "pngSha256": "11761911ba7d832695bda300c4c07c813aeb233e78ac17457c478d77ea184a4a",
+      "pngWidth": 1730,
+      "pngHeight": 2564
+    },
+    {
+      "name": "02-system-architecture",
+      "sourceSha256": "6412971e772ad359d3aba49e32850cfe7c0775a9a0b4e9d932bf0312c0317d49",
+      "svgSha256": "f796e64e40e37a3d0f2c631440a16d7f83ab264a8eb6b4feafc980ccf4be45c5",
+      "pngSha256": "f1753241dcc53fd606a6f3175e0ec9d9ffd737c81370b7b7578b7ee75340318c",
+      "pngWidth": 1390,
+      "pngHeight": 606
+    },
+    {
+      "name": "03-scheduling-and-admission",
+      "sourceSha256": "5170065c66706853f14a1903acef3d40cf31891b9b42dceaa6cb089f2a5d25ce",
+      "svgSha256": "a6ee724bc3f1f81516f0bd0a6431abfbf33232484a330bd96c498e16978ef7d0",
+      "pngSha256": "7ce5698edb19d1d1abc08319ed4c707f1f0ee0e2ccbf771f3a2c1b5940654232",
+      "pngWidth": 2264,
+      "pngHeight": 1954
+    },
+    {
+      "name": "04-attempt-and-uncertainty",
+      "sourceSha256": "d891a9017a8b9b2623599be6320e27953c1775beb30fae2c8538badc58415193",
+      "svgSha256": "252fc0b7fa59af9bb866c900eaf69f463d21d6d0f14cfe2ba57933894e03e9a7",
+      "pngSha256": "8b19f0ef0610dea544e85070614489ac193c5ee90dca8172a18a5b3e258169f7",
+      "pngWidth": 1738,
+      "pngHeight": 2430
+    },
+    {
+      "name": "05-control-and-recovery",
+      "sourceSha256": "0f6858601a1d07c7d146f320ddd1287f1f6044db16b97ccf554a6f807fba2fac",
+      "svgSha256": "4ad032c3002bfe9116f1ec3de263876167c866f7232413978ccc5a4c730a46ad",
+      "pngSha256": "5b95f1340f9e463f3d3533ff8ad63fe48e481d21a467db4c94bb2e32687db9d2",
+      "pngWidth": 3012,
+      "pngHeight": 1834
+    }
+  ],
+  "publicInputFiles": [
+    {
+      "file": ".gitignore",
+      "sha256": "3f852112d5b2f85fd5f42c9a8cf9b1ffd64f1256f2cbabbd964cc8700dff6640"
+    },
+    {
+      "file": "CLAUDE.md",
+      "sha256": "1d79b48422b9c2725317c773e9d59ff4c99e5cef2ffe244f1cc1f2336857c502"
+    },
+    {
+      "file": "README.md",
+      "sha256": "254fc59ffc28e8f7b221d35519d09f54674b9ae14474bc7aca514080c478eac6"
+    },
+    {
+      "file": "assets/evidence/controlled-use.md",
+      "sha256": "88c3f9467a17ed4349a22e2c639a41283e937e149f1df67bdae89a2a53797568"
+    },
+    {
+      "file": "assets/evidence/excerpt-identities.json",
+      "sha256": "d0ea57a335c2430983081a2e688d8e9d52b0557b07bc45948b0f8408ae949bda"
+    },
+    {
+      "file": "assets/evidence/historical-offline.md",
+      "sha256": "d4a61692c77849baf4b456d1df21bb9795d929e3beccaaeda97ed4a4d5853b22"
+    },
+    {
+      "file": "assets/evidence/source-catalog.json",
+      "sha256": "2efa3cb24c1fffec912f0180bd33acc9062e191b1ee6584a45281c52c5edc378"
+    },
+    {
+      "file": "diagrams/README.md",
+      "sha256": "1eabc0d6a3a1eea2a305dbf0d35dfefb500348272d111ab130ed65f5c216d028"
+    },
+    {
+      "file": "diagrams/node-registry.yaml",
+      "sha256": "f2b8ec144a0a2acf9e5a8733091b543845fae80cc48ee6fbc687fe8c3bc992cf"
+    },
+    {
+      "file": "diagrams/render-config.json",
+      "sha256": "bb149f2766653b88555a27bd6773d4c10066777f128d9808a928c0e827cda6c4"
+    },
+    {
+      "file": "diagrams/rendered/01-user-journey.png",
+      "sha256": "11761911ba7d832695bda300c4c07c813aeb233e78ac17457c478d77ea184a4a"
+    },
+    {
+      "file": "diagrams/rendered/01-user-journey.svg",
+      "sha256": "70798208ef08e5f18d1eaf093f51a4b8ffe4a3f30072ae83178febf78e8d7c13"
+    },
+    {
+      "file": "diagrams/rendered/02-system-architecture.png",
+      "sha256": "f1753241dcc53fd606a6f3175e0ec9d9ffd737c81370b7b7578b7ee75340318c"
+    },
+    {
+      "file": "diagrams/rendered/02-system-architecture.svg",
+      "sha256": "f796e64e40e37a3d0f2c631440a16d7f83ab264a8eb6b4feafc980ccf4be45c5"
+    },
+    {
+      "file": "diagrams/rendered/03-scheduling-and-admission.png",
+      "sha256": "7ce5698edb19d1d1abc08319ed4c707f1f0ee0e2ccbf771f3a2c1b5940654232"
+    },
+    {
+      "file": "diagrams/rendered/03-scheduling-and-admission.svg",
+      "sha256": "a6ee724bc3f1f81516f0bd0a6431abfbf33232484a330bd96c498e16978ef7d0"
+    },
+    {
+      "file": "diagrams/rendered/04-attempt-and-uncertainty.png",
+      "sha256": "8b19f0ef0610dea544e85070614489ac193c5ee90dca8172a18a5b3e258169f7"
+    },
+    {
+      "file": "diagrams/rendered/04-attempt-and-uncertainty.svg",
+      "sha256": "252fc0b7fa59af9bb866c900eaf69f463d21d6d0f14cfe2ba57933894e03e9a7"
+    },
+    {
+      "file": "diagrams/rendered/05-control-and-recovery.png",
+      "sha256": "5b95f1340f9e463f3d3533ff8ad63fe48e481d21a467db4c94bb2e32687db9d2"
+    },
+    {
+      "file": "diagrams/rendered/05-control-and-recovery.svg",
+      "sha256": "4ad032c3002bfe9116f1ec3de263876167c866f7232413978ccc5a4c730a46ad"
+    },
+    {
+      "file": "diagrams/source/01-user-journey.mmd",
+      "sha256": "48363805e8e6fa72e0c72fb8fa1fbc487eeb272f7c40dec970fd3c9714988064"
+    },
+    {
+      "file": "diagrams/source/02-system-architecture.mmd",
+      "sha256": "6412971e772ad359d3aba49e32850cfe7c0775a9a0b4e9d932bf0312c0317d49"
+    },
+    {
+      "file": "diagrams/source/03-scheduling-and-admission.mmd",
+      "sha256": "5170065c66706853f14a1903acef3d40cf31891b9b42dceaa6cb089f2a5d25ce"
+    },
+    {
+      "file": "diagrams/source/04-attempt-and-uncertainty.mmd",
+      "sha256": "d891a9017a8b9b2623599be6320e27953c1775beb30fae2c8538badc58415193"
+    },
+    {
+      "file": "diagrams/source/05-control-and-recovery.mmd",
+      "sha256": "0f6858601a1d07c7d146f320ddd1287f1f6044db16b97ccf554a6f807fba2fac"
+    },
+    {
+      "file": "docs/architecture.md",
+      "sha256": "9f7f8f654f96589cfbf9104dfba6e06e7249ad9167597763e38dab3f228f214c"
+    },
+    {
+      "file": "docs/authorship-and-scope.md",
+      "sha256": "0d59089d0e3fa280139e3bb4c439b6a2f6bdf9443b4e5dc3efc261e940c941a4"
+    },
+    {
+      "file": "docs/engineering-decisions.md",
+      "sha256": "ce5249f46f6303f552463e815bca3fb839fd48a37bed88b8f1541442214e04a2"
+    },
+    {
+      "file": "docs/validation.md",
+      "sha256": "fd74ce4be3018cb7bbaf72135214595f02d00be198ea0a6ea4749960ab9cb74b"
+    },
+    {
+      "file": "scripts/check.mjs",
+      "sha256": "8656de522b33fe9f73168ee1b44f9e23f0616aae904ed2a81e11ab025a35c92e"
+    },
+    {
+      "file": "scripts/render-diagrams.sh",
+      "sha256": "9bfa7b5bcd6ebe1372e46b76c0a57572e387a42fb7fe6a894a0ebc4e558d4a77"
+    }
+  ]
+}

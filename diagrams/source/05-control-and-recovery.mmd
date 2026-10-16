@@ -1,0 +1,24 @@
+flowchart TB
+%% Public explanatory projection; not a runtime state machine.
+%% Node identities: ../node-registry.yaml. Source IDs: assets/evidence/source-catalog.json.
+  CS_27["Choose the control intent"]
+  CS_28["status: read local facts"]
+  CS_29["stop: persist stop intent"]
+  CS_30["resume: verify existing result"]
+  CS_31["continue: request observation"]
+  CS_32{"Continue eligibility passes?"}
+  CS_33["Return to observation"]
+  CS_34["Refuse with a next action"]
+  CS_35["After a process failure"]
+  CS_36["Fence old owner; reread facts"]
+  CS_27 -->|Inspect| CS_28
+  CS_27 -->|Stop future work| CS_29
+  CS_27 -->|Reconcile| CS_30
+  CS_27 -->|Explicitly continue| CS_31
+  CS_31 --> CS_32
+  CS_32 -->|Yes| CS_33
+  CS_32 -->|No or UNKNOWN| CS_34
+  CS_35 --> CS_36
+  CS_36 -->|Ownership unresolved| CS_34
+  CS_36 -->|Ownership proven; no auto-activation| CS_27
+

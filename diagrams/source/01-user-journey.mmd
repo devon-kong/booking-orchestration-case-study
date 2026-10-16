@@ -1,0 +1,22 @@
+flowchart TB
+%% Public explanatory projection; not a runtime state machine.
+%% Node identities: ../node-registry.yaml. Source IDs: assets/evidence/source-catalog.json.
+  CS_01["Prepare the session"]
+  CS_02["Choose target and path"]
+  CS_03["Receive task acceptance"]
+  CS_04["Wait and observe"]
+  CS_05{"Eligible opportunity?"}
+  CS_06["Run the selected path"]
+  CS_07["Assess official evidence"]
+  CS_08{"What is confirmed?"}
+  CS_09["Hand over for manual payment"]
+  CS_10["Report the proven failure"]
+  CS_11["Keep UNKNOWN; reconcile"]
+  CS_01 --> CS_02 --> CS_03 --> CS_04 --> CS_05
+  CS_05 -->|Not yet| CS_04
+  CS_05 -->|Yes; admission required| CS_06
+  CS_06 --> CS_07 --> CS_08
+  CS_08 -->|Attributed order| CS_09
+  CS_08 -->|Proven failure| CS_10
+  CS_08 -->|Insufficient evidence| CS_11
+

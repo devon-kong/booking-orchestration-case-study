@@ -1,0 +1,321 @@
+version: 1
+scope: public-case-study-projections
+domains:
+  BC: upstream-booking-core-identities
+  CS: case-study-abstractions
+nodes:
+  BC-01:
+    label: "Booking Core"
+    kind: component
+    domain: BC
+    mermaid_id: BC_01
+    definition: "One local process coordinates multiple Campaigns; its internal roles are not separate services."
+    source_refs: "S01,S02,S05"
+  BC-03:
+    label: "Query scheduler"
+    kind: component
+    domain: BC
+    mermaid_id: BC_03
+    definition: "Core-local merge and fairness decisions; it does not bypass actual dispatch admission."
+    source_refs: "S01,S06,S11"
+  BC-06:
+    label: "Durable business facts"
+    kind: entity
+    domain: BC
+    mermaid_id: BC_06
+    definition: "Committed receipts, Campaigns, Attempts, FINAL consumption, Hold and evidence."
+    source_refs: "S01,S05"
+  BC-07:
+    label: "Shared query gate"
+    kind: component
+    domain: BC
+    mermaid_id: BC_07
+    definition: "Cross-entry serialization and actual query-start accounting, with the dated narrow exception."
+    source_refs: "S01,S06,S12"
+  BC-08:
+    label: "SessionStore and activity"
+    kind: component
+    domain: BC
+    mermaid_id: BC_08
+    definition: "Shared owner, revision and temporary account-activity boundaries for authorized writers."
+    source_refs: "S01,S05"
+  BC-09:
+    label: "Independent Renewer"
+    kind: component
+    domain: BC
+    mermaid_id: BC_09
+    definition: "Unique session-renewal actor, independent of a running Booking Core."
+    source_refs: "S01,S05"
+  BC-10:
+    label: "Status and notifications"
+    kind: component
+    domain: BC
+    mermaid_id: BC_10
+    definition: "Derived reporting; delivery errors cannot rewrite committed business outcomes."
+    source_refs: "S01,S05"
+  BC-11:
+    label: "CLI and application entry"
+    kind: component
+    domain: BC
+    mermaid_id: BC_11
+    definition: "User-facing setup, query, run, status and stop interfaces."
+    source_refs: "S01,S05"
+  BC-12:
+    label: "Official booking platform"
+    kind: component
+    domain: BC
+    mermaid_id: BC_12
+    definition: "External inventory, booking and authoritative order evidence; not controlled by local state."
+    source_refs: "S01,S05"
+  CS-01:
+    label: "Prepare the session"
+    kind: action
+    domain: CS
+    mermaid_id: CS_01
+    definition: "Human-assisted setup and session preparation; not task creation."
+    source_refs: "S01,S03"
+  CS-02:
+    label: "Choose target and path"
+    kind: action
+    domain: CS
+    mermaid_id: CS_02
+    definition: "Freeze the target and explicitly select Direct or HouBu; no automatic path switching."
+    source_refs: "S01,S03"
+  CS-03:
+    label: "Receive task acceptance"
+    kind: action
+    domain: CS
+    mermaid_id: CS_03
+    definition: "Durable acceptance and bound authorization; ACK is not a booking result."
+    source_refs: "S01,S08,S14"
+  CS-04:
+    label: "Wait and observe"
+    kind: action
+    domain: CS
+    mermaid_id: CS_04
+    definition: "An accepted, eligible task waits for sale and observes inventory; no guaranteed availability."
+    source_refs: "S01,S11"
+  CS-05:
+    label: "Eligible opportunity?"
+    kind: action
+    domain: CS
+    mermaid_id: CS_05
+    definition: "Availability alone is insufficient; the chosen path and target must match."
+    source_refs: "S01"
+  CS-06:
+    label: "Run the selected path"
+    kind: action
+    domain: CS
+    mermaid_id: CS_06
+    definition: "Authorized Direct or HouBu execution with per-step admission and a durable FINAL barrier."
+    source_refs: "S01,S03"
+  CS-07:
+    label: "Assess official evidence"
+    kind: action
+    domain: CS
+    mermaid_id: CS_07
+    definition: "Bounded reconciliation distinguishes evidence from transport status and local errors."
+    source_refs: "S01,S07"
+  CS-08:
+    label: "What is confirmed?"
+    kind: action
+    domain: CS
+    mermaid_id: CS_08
+    definition: "Classify the supported result without treating timeout as proven failure."
+    source_refs: "S01,S07"
+  CS-09:
+    label: "Hand over for manual payment"
+    kind: boundary
+    domain: CS
+    mermaid_id: CS_09
+    definition: "Direct awaiting payment or HouBu awaiting prepayment; no automatic payment or fulfillment claim."
+    source_refs: "S01"
+  CS-10:
+    label: "Report the proven failure"
+    kind: boundary
+    domain: CS
+    mermaid_id: CS_10
+    definition: "Report a supported failure; another Attempt needs independent eligibility."
+    source_refs: "S01,S07"
+  CS-11:
+    label: "Keep UNKNOWN; reconcile"
+    kind: state
+    domain: CS
+    mermaid_id: CS_11
+    definition: "Retain the original identity and FINAL consumption; do not replay submission."
+    source_refs: "S01,S07,S15"
+  CS-12:
+    label: "Merge same-key subscriptions"
+    kind: action
+    domain: CS
+    mermaid_id: CS_12
+    definition: "Share pending inventory work and safe observations, not private execution materials."
+    source_refs: "S01,S06,S11"
+  CS-13:
+    label: "Share safe Observation"
+    kind: boundary
+    domain: CS
+    mermaid_id: CS_13
+    definition: "Distribute public inventory facts to subscribers; this is not execution permission."
+    source_refs: "S01,S06"
+  CS-14:
+    label: "Private authenticated recheck"
+    kind: action
+    domain: CS
+    mermaid_id: CS_14
+    definition: "One eligible opportunity receives a private recheck through the shared gate."
+    source_refs: "S01,S06"
+  CS-15:
+    label: "All execution checks pass?"
+    kind: action
+    domain: CS
+    mermaid_id: CS_15
+    definition: "Recheck target, authorization, stop, owner, session health, activity and conflicting Hold."
+    source_refs: "S01,S06"
+  CS-16:
+    label: "Persist Attempt and Hold"
+    kind: action
+    domain: CS
+    mermaid_id: CS_16
+    definition: "Record fixed input, stable Attempt and attributable account occupancy before side effects."
+    source_refs: "S01,S06,S13"
+  CS-17:
+    label: "Admit each protocol step"
+    kind: action
+    domain: CS
+    mermaid_id: CS_17
+    definition: "Per-step admission; FINAL additionally consumes its durable one-use barrier."
+    source_refs: "S01,S03"
+  CS-18:
+    label: "Release activity; wait or stop"
+    kind: boundary
+    domain: CS
+    mermaid_id: CS_18
+    definition: "Do not hold temporary activity while waiting for the gate; no bypass on refusal."
+    source_refs: "S01,S06"
+  CS-19:
+    label: "Read the original Attempt"
+    kind: action
+    domain: CS
+    mermaid_id: CS_19
+    definition: "Reconcile an existing identity, including possible pre-final side effects."
+    source_refs: "S01,S07"
+  CS-20:
+    label: "Which evidence stage?"
+    kind: action
+    domain: CS
+    mermaid_id: CS_20
+    definition: "Separate proven no-side-effect preparation, possible pre-final effects and consumed FINAL."
+    source_refs: "S01,S07"
+  CS-21:
+    label: "Close proven preparation"
+    kind: action
+    domain: CS
+    mermaid_id: CS_21
+    definition: "Only a proven no-side-effect preparation may use its preparation-closeout rule."
+    source_refs: "S01,S07"
+  CS-22:
+    label: "Reconcile the original identity"
+    kind: action
+    domain: CS
+    mermaid_id: CS_22
+    definition: "Use stage-appropriate evidence without creating a new Attempt or replaying FINAL."
+    source_refs: "S01,S07,S15"
+  CS-23:
+    label: "Persist attributed outcome"
+    kind: action
+    domain: CS
+    mermaid_id: CS_23
+    definition: "Verify target, ownership by this Attempt and official lifecycle before declaring success."
+    source_refs: "S01,S07"
+  CS-24:
+    label: "Retain unresolved facts"
+    kind: state
+    domain: CS
+    mermaid_id: CS_24
+    definition: "Missing or conflicting evidence remains unresolved; a local release cannot erase it."
+    source_refs: "S01,S07"
+  CS-25:
+    label: "Evaluate local Hold separately"
+    kind: action
+    domain: CS
+    mermaid_id: CS_25
+    definition: "Versioned TTL and complete strict-empty rules concern local occupancy, not remote failure."
+    source_refs: "S01,S07"
+  CS-26:
+    label: "Recheck any new Attempt"
+    kind: boundary
+    domain: CS
+    mermaid_id: CS_26
+    definition: "Normal active control may proceed only after full eligibility; never replay the original FINAL."
+    source_refs: "S01,S07"
+  CS-27:
+    label: "Choose the control intent"
+    kind: action
+    domain: CS
+    mermaid_id: CS_27
+    definition: "Commands express distinct user intentions and are not sequential mandatory steps."
+    source_refs: "S01,S08"
+  CS-28:
+    label: "status: read local facts"
+    kind: action
+    domain: CS
+    mermaid_id: CS_28
+    definition: "The plain status command does not start Core or mutate business state."
+    source_refs: "S01"
+  CS-29:
+    label: "stop: persist stop intent"
+    kind: action
+    domain: CS
+    mermaid_id: CS_29
+    definition: "Stop future unadmitted side effects; do not cancel remote orders or clear Hold."
+    source_refs: "S01,S08"
+  CS-30:
+    label: "resume: verify existing result"
+    kind: action
+    domain: CS
+    mermaid_id: CS_30
+    definition: "Read trusted historical terminal evidence or perform permitted bounded reconciliation; no Core startup."
+    source_refs: "S01,S15"
+  CS-31:
+    label: "continue: request observation"
+    kind: action
+    domain: CS
+    mermaid_id: CS_31
+    definition: "Explicitly ask to continue the same unfinished Campaign; old FINAL quota is not restored."
+    source_refs: "S01,S15"
+  CS-32:
+    label: "Continue eligibility passes?"
+    kind: action
+    domain: CS
+    mermaid_id: CS_32
+    definition: "Reject unresolved side effects, conflicting Hold, invalid authorization or a completed goal."
+    source_refs: "S01,S15"
+  CS-33:
+    label: "Return to observation"
+    kind: action
+    domain: CS
+    mermaid_id: CS_33
+    definition: "An explicitly continued eligible task observes afresh; historical tasks are not auto-activated."
+    source_refs: "S01,S08"
+  CS-34:
+    label: "Refuse with a next action"
+    kind: boundary
+    domain: CS
+    mermaid_id: CS_34
+    definition: "Explain the blocked condition; preserve UNKNOWN and existing facts."
+    source_refs: "S01"
+  CS-35:
+    label: "After a process failure"
+    kind: state
+    domain: CS
+    mermaid_id: CS_35
+    definition: "Restart alone is not authority to replay a request or reactivate old tasks."
+    source_refs: "S01,S08"
+  CS-36:
+    label: "Fence old owner; reread facts"
+    kind: action
+    domain: CS
+    mermaid_id: CS_36
+    definition: "Establish exclusive ownership and reread durable facts; physical cleanup does not release business Hold."
+    source_refs: "S01,S08"

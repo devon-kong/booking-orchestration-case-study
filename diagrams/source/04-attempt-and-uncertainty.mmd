@@ -1,0 +1,24 @@
+flowchart TB
+%% Public explanatory projection; not a runtime state machine.
+%% Node identities: ../node-registry.yaml. Source IDs: assets/evidence/source-catalog.json.
+  CS_19["Read the original Attempt"]
+  CS_20{"Which evidence stage?"}
+  CS_21["Close proven preparation"]
+  CS_22["Reconcile the original identity"]
+  CS_08{"What is confirmed?"}
+  CS_23["Persist attributed outcome"]
+  CS_24["Retain unresolved facts"]
+  CS_25["Evaluate local Hold separately"]
+  CS_26["Recheck any new Attempt"]
+  CS_19 --> CS_20
+  CS_20 -->|Proven no possible side effect| CS_21
+  CS_20 -->|Possible pre-final effects| CS_22
+  CS_20 -->|FINAL consumed or known order| CS_22
+  CS_22 --> CS_08
+  CS_08 -->|Complete supporting evidence| CS_23
+  CS_08 -->|Missing or conflicting evidence| CS_24
+  CS_21 --> CS_25
+  CS_23 --> CS_25
+  CS_24 --> CS_25
+  CS_25 -->|Independent normal-control decision| CS_26
+

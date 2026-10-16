@@ -1,0 +1,20 @@
+block
+%% Selected dependencies, not a complete call graph or process sequence.
+%% BC identities retain their component meaning from the private design.
+  columns 3
+  space BC_11["CLI and application entry"] space
+  space:3
+  BC_06["Durable business facts"] BC_01["Booking Core"] BC_07["Shared query gate"]
+  space:3
+  BC_10["Status and notifications"] BC_08["SessionStore and activity"] BC_12["Official booking platform"]
+  space:3
+  space BC_09["Independent Renewer"] space
+  BC_11 --> BC_01
+  BC_01 --- BC_06
+  BC_01 --> BC_07
+  BC_01 --> BC_08
+  BC_09 --> BC_08
+  BC_07 --> BC_12
+  BC_01 --> BC_12
+  BC_09 --> BC_12
+  BC_06 --> BC_10

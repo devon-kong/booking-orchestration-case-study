@@ -1,0 +1,22 @@
+flowchart TB
+%% Public explanatory projection; not a runtime state machine.
+%% Node identities: ../node-registry.yaml. Source IDs: assets/evidence/source-catalog.json.
+  CS_12["Merge same-key subscriptions"]
+  BC_03["Query scheduler"]
+  BC_07["Shared query gate"]
+  CS_13["Share safe Observation"]
+  CS_14["Private authenticated recheck"]
+  CS_15{"All execution checks pass?"}
+  CS_16["Persist Attempt and Hold"]
+  CS_17["Admit each protocol step"]
+  CS_07["Assess official evidence"]
+  CS_18["Release activity; wait or stop"]
+  CS_12 --> BC_03 --> BC_07
+  BC_07 -->|Anonymous round| CS_13
+  CS_13 -->|Safe facts for every subscriber| BC_03
+  CS_13 -->|Eligible opportunity| CS_14
+  CS_14 -->|Recheck uses the same gate| BC_07
+  BC_07 -->|Private recheck result| CS_15
+  CS_15 -->|Yes| CS_16 --> CS_17 --> CS_07
+  CS_15 -->|No or gate busy| CS_18
+
