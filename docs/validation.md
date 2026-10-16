@@ -105,7 +105,7 @@ The starting GitHub main was `2b67c0383b184ab9da4896bb31ff17e177dae3f6`, already
 
 `bash scripts/render-diagrams.sh` completed using Mermaid CLI 11.17.0. All regenerated SVGs matched the existing exports. The local rasterizer produced minor pixel differences, so the existing published PNGs were retained rather than committing unrelated render churn. All five published PNGs were opened and inspected; they contain no ancillary metadata chunks. The diagram labels and edges match their source views.
 
-The existing GitHub-rendered English and Chinese pages were inspected at desktop (1440px) and mobile (390px) widths. Both loaded the overview images without page-level horizontal overflow. GitHub keeps the wider English engineering table horizontally scrollable on mobile; detailed diagrams can be opened separately for zooming. The final published wording will also be checked after push.
+The existing GitHub-rendered English and Chinese pages were inspected at desktop (1440px) and mobile (390px) widths. Both loaded the overview images without page-level horizontal overflow. GitHub keeps the wider English engineering table horizontally scrollable on mobile; detailed diagrams can be opened separately for zooming. The revised wording was also checked on the published main after push; both languages retained these layout results.
 
 A separate AI-agent context reviewed this public edition, independently reran the public checks and four checker regressions, and found no unresolved issues after restoring the explicit local-account-occupancy wording. Its review did not access private reports or independently verify the external pages; the publishing agent performed those page checks. This supplements, rather than changes, the earlier self-review statement.
 

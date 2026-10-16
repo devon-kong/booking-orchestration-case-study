@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "result": "PASS",
-  "checkedAt": "2026-10-16T15:45:41.957Z",
+  "checkedAt": "2026-10-16T15:46:58.025Z",
   "runtime": "v26.9.0",
   "verificationScope": "Public case-study consistency and two published pure functions; not private product or online validation.",
   "checksPassed": 174,
@@ -249,7 +249,7 @@
     },
     {
       "file": "docs/validation.md",
-      "sha256": "85f78b9484f4c5e3378df193c1dddef5d92af5ad7fa7bbe51e893d1c07ae0ded"
+      "sha256": "6f1e62dad6ea22554d8ec73b85436e767ec8c64953e31755823d388d0e6a4c18"
     },
     {
       "file": "scripts/check.mjs",
