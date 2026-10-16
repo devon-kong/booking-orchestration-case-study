@@ -21,6 +21,8 @@ The China Academy of Railway Sciences Corporation’s [official report published
 | Passenger journeys carried | **302 million** | National railway, September 23–October 8, 2026; the 16-day Mid-Autumn / National Day transport period |
 | Tickets sold in one day | **29.737 million** | September 23, 2026; railway ticket sales, described in the report’s all-channel sales context |
 
+The rendered official page was rechecked on 2026-10-16: its visible publication date, measurement dates and Chinese metric wording match the table. Short source excerpts and the all-channel context are retained in P05 of the public context catalogue.
+
 These are reported actual totals, not the earlier holiday forecast. Passenger journeys count trips rather than unique people; ticket sales count tickets rather than simultaneous requests or active users. The publication date differs from both measurement periods. Neither total measures this project’s workload, performance or success rate. The source does not supply a concurrent-user figure for either metric.
 
 ## What that means for this case study

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
   "result": "PASS",
-  "checkedAt": "2026-10-16T06:53:31.492Z",
-  "runtime": "v26.8.2",
+  "checkedAt": "2026-10-16T15:45:41.957Z",
+  "runtime": "v26.9.0",
   "verificationScope": "Public case-study consistency and two published pure functions; not private product or online validation.",
   "checksPassed": 174,
   "failures": [],
@@ -133,11 +133,11 @@
     },
     {
       "file": "README.md",
-      "sha256": "4c7026a53302a0949f0848cbfcf409cde57c376236794780427b77e625700f00"
+      "sha256": "acfbf137ceb1ca855b7ae960c5d13b7a06a6f396d142ba2fcc63a3458f04ee89"
     },
     {
       "file": "README.zh-CN.md",
-      "sha256": "8c22d0bdf3216a64ca6d4808358a8a54ebcc82633a013893926d813636ca4933"
+      "sha256": "abb87b19f02071cc89c56928e084fae909474980dd62a624a3f919bb685e68ec"
     },
     {
       "file": "assets/evidence/controlled-use.md",
@@ -153,7 +153,7 @@
     },
     {
       "file": "assets/evidence/public-context.json",
-      "sha256": "8a080b1fc6855d3b8e1f1518f47c6315e7f49b410f0572ca6c70928f5010fdef"
+      "sha256": "a1c8a42b35143d5324a8137e62bbb7bd13dd33a5f8f22ee06123133cf6bbbecb"
     },
     {
       "file": "assets/evidence/source-catalog.json",
@@ -245,11 +245,11 @@
     },
     {
       "file": "docs/platform-context.md",
-      "sha256": "0c14458dcc1061a8ef0fc0aba7edf11b4b962f221883f5e660d0355cbdadd940"
+      "sha256": "acce3cf8a9c9b96d50757c980b0560743f4aa7d86b12cc5da960141645f4bab2"
     },
     {
       "file": "docs/validation.md",
-      "sha256": "b490b288fc87aaf95625fa0a2edc00585c70582bd0787b60d36e0eac327cee56"
+      "sha256": "85f78b9484f4c5e3378df193c1dddef5d92af5ad7fa7bbe51e893d1c07ae0ded"
     },
     {
       "file": "scripts/check.mjs",

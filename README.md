@@ -4,7 +4,7 @@
 
 **Reliable business automation · Node.js CLI · Task orchestration · Fault recovery**
 
-A Node.js CLI that coordinates scheduled ticket-booking tasks on China Railway 12306, China's official railway ticketing platform. I designed the product flows, architecture and recovery model, directed implementation, and owned acceptance.
+A Node.js CLI that coordinates scheduled ticket-booking tasks on China Railway 12306, China's official railway ticketing platform. I designed the product flows, architecture and recovery model, directed implementation, and led acceptance testing.
 
 **Selected Direct and HouBu workflows completed real-platform validation**, reaching the following handoffs in the documented historical builds:
 
@@ -35,7 +35,7 @@ A local CLI system that accepts a fixed target, coordinates long-running tasks, 
 
 ![From session preparation to Direct or HouBu payment handoff](diagrams/rendered/01-user-journey.svg)
 
-Acceptance confirms a task, not a booking. Both paths require current eligibility, controlled submission and attributed official evidence. An unresolved outcome stays **UNKNOWN** and cannot trigger blind resubmission. [Control and recovery →](docs/architecture.md#control-and-uncertainty)
+Acceptance confirms a task, not a booking. Both paths require eligibility checks, controlled submission and an official result tied to the original attempt. An unresolved outcome stays **UNKNOWN** and cannot trigger blind resubmission. [Control and recovery →](docs/architecture.md#control-and-uncertainty)
 
 ## System architecture
 
@@ -43,13 +43,13 @@ Acceptance confirms a task, not a booking. Both paths require current eligibilit
 
 **JavaScript ES Modules · Node.js · durable local state · built-in Node test runner**
 
-One Booking Core schedules multiple Campaigns; an independent Renewer maintains session health. A shared query gate coordinates inventory requests, while durable facts preserve task identity, submission allowance and local occupancy across interruptions. [Responsibilities and actual code map →](docs/architecture.md)
+One Booking Core schedules multiple booking tasks (Campaigns); a separate session maintainer (Renewer) handles session renewal. A shared query gate coordinates inventory requests, while durable state preserves task identity, submission allowance and local account occupancy across interruptions. [Responsibilities and actual code map →](docs/architecture.md)
 
 ## Three engineering decisions
 
 | Challenge | Design choice and user value | Detail |
 | --- | --- | --- |
-| Lost responses and duplicate actions | Stable request identity plus a durable FINAL barrier recover existing work without blindly submitting again | [Failure scenario and traceability](docs/engineering-decisions.md#reliability-walkthrough-unknown-does-not-mean-retry) |
+| Lost responses and duplicate actions | Stable request identity and a persisted one-use final-submission barrier recover existing work without blindly submitting again | [Failure scenario and traceability](docs/engineering-decisions.md#reliability-walkthrough-unknown-does-not-mean-retry) |
 | Overlapping tasks | Share safe inventory observations; keep private execution and authorization separate | [Scheduling and admission](docs/engineering-decisions.md#2-share-inventory-facts-while-keeping-execution-private) |
 | Deadlines and recovery controls | Wake for nearby deadlines through one scheduler; distinguish inspect, stop, reconcile and continue | [Trade-offs and source excerpts](docs/engineering-decisions.md#3-schedule-around-deadlines-and-explain-control-precisely) |
 

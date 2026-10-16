@@ -4,7 +4,7 @@
 
 **可靠业务自动化 · Node.js CLI · 任务编排 · 故障恢复**
 
-这是一套在中国铁路官方票务平台 12306 上协调定时订票任务的 Node.js CLI 系统。我定义产品流程，设计架构和恢复模型，指导实现，并负责验收。
+这是一套在中国铁路官方票务平台 12306 上协调定时订票任务的 Node.js CLI 系统。我定义产品流程，设计架构和恢复模型，指导实现，并主导验收测试。
 
 **已完成限定场景的 Direct 与 HouBu 真实平台线上验证**，在各自记录的历史版本中取得以下结果：
 
@@ -35,7 +35,7 @@
 
 ![从会话准备到 Direct 或 HouBu 的人工支付交接](diagrams/rendered/01-user-journey.svg)
 
-任务被接收不代表订票成功。两条路径都必须通过当前资格检查、受控提交和官方结果归属核实。未解决的结果保留为 **UNKNOWN**，不能触发盲目重新提交。[控制与恢复语义 →](docs/architecture.md#control-and-uncertainty)
+任务被接收不代表订票成功。两条路径都必须通过资格检查、受控提交，并将官方结果核实归属到原始尝试。未解决的结果保留为 **UNKNOWN**，不能触发盲目重新提交。[控制与恢复语义 →](docs/architecture.md#control-and-uncertainty)
 
 ## 系统架构
 
@@ -43,13 +43,13 @@
 
 **JavaScript ES Modules · Node.js · 本地持久化状态 · Node 内置测试运行器**
 
-一个 Booking Core 调度多个 Campaign（订票任务）；独立 Renewer 维护会话健康。共享查询闸门协调余票请求，持久化事实则在中断后保留任务身份、提交额度和本地占用。[职责与实际代码映射 →](docs/architecture.md)
+一个 Booking Core 调度多个订票任务（Campaign）；独立的会话维护进程（Renewer）负责会话续期。共享查询闸门协调余票请求，持久化状态则在中断后保留任务身份、提交额度和本地账号占用。[职责与实际代码映射 →](docs/architecture.md)
 
 ## 三个工程决策
 
 | 挑战 | 设计选择与用户价值 | 详情 |
 | --- | --- | --- |
-| 响应丢失与重复操作 | 稳定请求身份与持久化 FINAL 屏障，恢复已有工作，避免盲目重复提交 | [故障场景与证据追溯](docs/engineering-decisions.md#reliability-walkthrough-unknown-does-not-mean-retry) |
+| 响应丢失与重复操作 | 稳定请求身份与持久化的一次性最终提交屏障，恢复已有工作，避免盲目重复提交 | [故障场景与证据追溯](docs/engineering-decisions.md#reliability-walkthrough-unknown-does-not-mean-retry) |
 | 多个任务重叠 | 共享安全的余票观察结果，隔离私有执行材料与授权 | [调度与准入](docs/engineering-decisions.md#2-share-inventory-facts-while-keeping-execution-private) |
 | 截止时间与恢复控制 | 通过同一调度器响应临近截止时间；区分查看、停止、核实与继续 | [取舍与源码摘录](docs/engineering-decisions.md#3-schedule-around-deadlines-and-explain-control-precisely) |
 

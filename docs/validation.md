@@ -77,6 +77,8 @@ A bounded, metadata-only search covered the source project's documentation and d
 | Direct result capture | Retained image corresponding to H-DIRECT (2026-09-28), showing the awaiting-payment handoff | Provenance matches the report; no payment or fulfillment inference |
 | HouBu result capture | Retained image corresponding to H-HOUBU (2026-09-27), showing the awaiting-prepayment handoff | Provenance matches the report; no ticket-allocation or fulfillment inference |
 
+The final acceptance pass rechecked the catalogue snapshot’s documentation and diagram Git trees: zero documentation raster images, 327 design/preview raster exports, and no capture-named candidate. The local historical documentation directories also contained no raster images. This was a bounded metadata check, not inspection of private runtime evidence. No additional product capture qualified.
+
 To close this gap, supply the retained captures plus their date/install/report association. Select at most 2–3 images, irreversibly redact and flatten them, remove metadata, inspect the final exported pixels, and only then place them in `assets/screenshots/` and re-record public checks. No empty screenshot directory or simulated terminal panel is added. This revision authorizes no new live capture workflow.
 
 ## Portfolio R1.1 · 2026-10-16
@@ -84,6 +86,30 @@ To close this gap, supply the retained captures plus their date/install/report a
 This edition adds the P05 official holiday totals with explicit metric scopes, restores the session-preparation step in the user journey and gives Direct and HouBu separate manual payment / prepayment endpoints. The other four technical views, implementation excerpts and historical run claims are retained. The earlier combined CS-09 identity remains registered; new CS-39/CS-40 identify the distinct handoffs.
 
 The bilingual homepages retain the sequence: outcomes, platform challenge, product, journey, architecture, engineering choices, validation and contribution. The remaining presentation gap is explicitly `VISUAL_EVIDENCE_PENDING`. Publication checks and checker regressions validate the public edition; they do not execute the private product. Review is a solo self-review, not a fresh independent review. The written product contract (S01) was re-read for session and human-payment semantics and still matched its catalogued hash; this is not a refreshed source snapshot. All five exports were regenerated and inspected; the other four SVG/PNG pairs remained byte-identical. A local preview using GitHub-rendered Markdown and approximate GitHub styling was checked at 1440px and 390px widths in both languages, with no page-level horizontal overflow. Diagram detail on a narrow screen can be opened separately for zooming.
+
+## R1.1 final acceptance pass · 2026-10-16
+
+The starting GitHub main was `2b67c0383b184ab9da4896bb31ff17e177dae3f6`, already newer than the requested R1 reference `8365b20`. Existing R1.1 journey corrections and holiday figures were verified and retained. This pass simplifies homepage terminology, records direct official-page checks and confirms the visual-evidence gap; it does not rerun or upgrade historical product acceptance.
+
+| Gate | Result | Basis |
+| --- | --- | --- |
+| G1 · Real-platform outcomes | PASS | Original dated Direct/HouBu summaries and their limitations retained |
+| G2 · Platform background | PASS | All five cited official pages opened; P05 publication date, statistical dates, units and scope matched the body |
+| G3 · Homepage clarity | PASS | Matching bilingual narrative; task, renewal and final-submission terms explained in ordinary language |
+| G4 · User journey | PASS | Separate payment/prepayment endpoints; all ten expected edges retained, including failure and UNKNOWN; no path switch |
+| G5 · Authentic visuals | PENDING | No provenance-qualified product capture; required historical materials listed above |
+| G6 · Diagrams and cases | PASS | Five Mermaid sources, registered identities, SVG/PNG exports and case boundaries inspected; four technical views unchanged |
+| G7 · Public verification | PASS | Public check passed; 17 pure-function cases, 95 relative links, five external references and five diagram pairs; checker regressions 4/4 passed |
+| G8 · Scope and disclosure | PASS | Public-only changes; no new product screenshots, private logs, protocol data or product-source edits |
+| G9 · GitHub metadata | PASS | Existing Description and all five relevant Topics confirmed; no repository settings changed |
+
+`bash scripts/render-diagrams.sh` completed using Mermaid CLI 11.17.0. All regenerated SVGs matched the existing exports. The local rasterizer produced minor pixel differences, so the existing published PNGs were retained rather than committing unrelated render churn. All five published PNGs were opened and inspected; they contain no ancillary metadata chunks. The diagram labels and edges match their source views.
+
+The existing GitHub-rendered English and Chinese pages were inspected at desktop (1440px) and mobile (390px) widths. Both loaded the overview images without page-level horizontal overflow. GitHub keeps the wider English engineering table horizontally scrollable on mobile; detailed diagrams can be opened separately for zooming. The final published wording will also be checked after push.
+
+A separate AI-agent context reviewed this public edition, independently reran the public checks and four checker regressions, and found no unresolved issues after restoring the explicit local-account-occupancy wording. Its review did not access private reports or independently verify the external pages; the publishing agent performed those page checks. This supplements, rather than changes, the earlier self-review statement.
+
+**Presentation verdict: ACCEPTED_WITH_VISUAL_PENDING.** G5 is the only presentation gate left open. This verdict concerns the case-study presentation, not full product or production acceptance.
 
 ## First-edition verification boundaries
 
