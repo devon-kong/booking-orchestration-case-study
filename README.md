@@ -1,5 +1,7 @@
 # Booking Orchestration
 
+[English](README.md) | [简体中文](README.zh-CN.md)
+
 ### A reliability-focused engineering case study
 
 A personal engineering project exploring reliable booking workflows: coordinating long-running tasks, session health, controlled submission, and recovery from uncertain outcomes. This repository presents selected architecture, engineering decisions and sanitized evidence from a 12306 booking project. The platform-specific implementation remains private.

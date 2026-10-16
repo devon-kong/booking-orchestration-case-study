@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "result": "PASS",
-  "checkedAt": "2026-10-15T15:17:03.173Z",
+  "checkedAt": "2026-10-16T01:22:46.657Z",
   "runtime": "v26.8.2",
   "verificationScope": "Public case-study consistency and two published pure functions; not private product or online validation.",
-  "checksPassed": 130,
+  "checksPassed": 154,
   "failures": [],
-  "relativeLinksChecked": 64,
+  "relativeLinksChecked": 86,
   "pureFunctionCases": 17,
   "pureFunctionResults": [
     {
@@ -127,11 +127,15 @@
     },
     {
       "file": "CLAUDE.md",
-      "sha256": "1d79b48422b9c2725317c773e9d59ff4c99e5cef2ffe244f1cc1f2336857c502"
+      "sha256": "5ae71dc3ec4359a8e7b054a2c39cbc25f873381f2eadeabd9af4eba73641bb9b"
     },
     {
       "file": "README.md",
-      "sha256": "254fc59ffc28e8f7b221d35519d09f54674b9ae14474bc7aca514080c478eac6"
+      "sha256": "003aa2cdeeea370fa8d2bb1337101e5b1908488f3c327af4a833de4d448390e8"
+    },
+    {
+      "file": "README.zh-CN.md",
+      "sha256": "21ad35e2a91def49075e11f1887f42abc157250a0e8883c0482b46b9879fd8d4"
     },
     {
       "file": "assets/evidence/controlled-use.md",

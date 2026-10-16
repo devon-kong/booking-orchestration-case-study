@@ -1,7 +1,7 @@
 # Case-study maintenance
 
 - This repository presents selected architecture and evidence; it is not a booking client.
-- Write public content in English. Keep the README concise and client-facing.
+- Write public content in English, with README.zh-CN.md as the Chinese translation. Keep both READMEs concise and client-facing.
 - Treat source projects as read-only. Never run their tests, builds, or live commands here.
 - Keep design, implementation, historical validation, and present checks separate.
 - Bind factual claims to the source catalogue and a dated evidence summary.
