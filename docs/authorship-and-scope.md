@@ -25,7 +25,7 @@ The platform-specific implementation, complete request construction, login mater
 
 Public evidence is a **curated summary**, not an independent reproduction of the private system. Original reports were read locally. Only selected non-personal assertions and material limitations were rewritten here; the original reports and their sensitive context were not copied. Private runtime locators are omitted from the public catalogue. Public readers can inspect the summaries, while the hashes alone cannot prove their claims.
 
-No simulated screenshot is presented as a real run. The first edition uses diagrams and textual evidence, without product screenshots or a demo video.
+No simulated screenshot is presented as a real run. This edition uses diagrams and textual evidence, without product screenshots or a demo video. The [visual evidence follow-up](validation.md#visual-evidence-follow-up) defines what an authentic, redacted capture must establish.
 
 ## Attribution and sources
 

@@ -1,12 +1,14 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "result": "PASS",
-  "checkedAt": "2026-10-16T01:22:46.657Z",
+  "checkedAt": "2026-10-16T03:02:42.917Z",
   "runtime": "v26.8.2",
   "verificationScope": "Public case-study consistency and two published pure functions; not private product or online validation.",
-  "checksPassed": 154,
+  "checksPassed": 173,
   "failures": [],
-  "relativeLinksChecked": 86,
+  "relativeLinksChecked": 95,
+  "externalReferencesChecked": 4,
+  "recordFreshness": "REFRESHED",
   "pureFunctionCases": 17,
   "pureFunctionResults": [
     {
@@ -81,11 +83,11 @@
   "diagramExports": [
     {
       "name": "01-user-journey",
-      "sourceSha256": "48363805e8e6fa72e0c72fb8fa1fbc487eeb272f7c40dec970fd3c9714988064",
-      "svgSha256": "70798208ef08e5f18d1eaf093f51a4b8ffe4a3f30072ae83178febf78e8d7c13",
-      "pngSha256": "11761911ba7d832695bda300c4c07c813aeb233e78ac17457c478d77ea184a4a",
-      "pngWidth": 1730,
-      "pngHeight": 2564
+      "sourceSha256": "316bec9eb7aa293593442a73798aa36eeee5118705af6a55bc19d5d61630ccfc",
+      "svgSha256": "3640a99761550f4e0768d0de5675c37136ea4557049f382d3297877ade88c84a",
+      "pngSha256": "3d338b10d512911d04f6f083019e3adfd019e3c435ff16a650ff997eea8496ff",
+      "pngWidth": 2158,
+      "pngHeight": 928
     },
     {
       "name": "02-system-architecture",
@@ -127,15 +129,15 @@
     },
     {
       "file": "CLAUDE.md",
-      "sha256": "5ae71dc3ec4359a8e7b054a2c39cbc25f873381f2eadeabd9af4eba73641bb9b"
+      "sha256": "660fc213c523291991a3aba69e393eef19097c7bdd612bdb3effeb2ae757a2a8"
     },
     {
       "file": "README.md",
-      "sha256": "003aa2cdeeea370fa8d2bb1337101e5b1908488f3c327af4a833de4d448390e8"
+      "sha256": "ed72f349955bf9fabeea220aa990d87dd37553db48a2fe68b8a635c8e2b4be62"
     },
     {
       "file": "README.zh-CN.md",
-      "sha256": "21ad35e2a91def49075e11f1887f42abc157250a0e8883c0482b46b9879fd8d4"
+      "sha256": "5dddccd5cece7e531277c75021fe04824470b0d8f69698af914f4ee1e1ddbb06"
     },
     {
       "file": "assets/evidence/controlled-use.md",
@@ -150,16 +152,20 @@
       "sha256": "d4a61692c77849baf4b456d1df21bb9795d929e3beccaaeda97ed4a4d5853b22"
     },
     {
+      "file": "assets/evidence/public-context.json",
+      "sha256": "12e3ec2a87bd82e767beae79c16e4b708ac3143df500a054e7dffbc8c8577a82"
+    },
+    {
       "file": "assets/evidence/source-catalog.json",
       "sha256": "2efa3cb24c1fffec912f0180bd33acc9062e191b1ee6584a45281c52c5edc378"
     },
     {
       "file": "diagrams/README.md",
-      "sha256": "1eabc0d6a3a1eea2a305dbf0d35dfefb500348272d111ab130ed65f5c216d028"
+      "sha256": "17e464eec30e07d50ffb8dc752a22e0bf2a1fe5bc4d16f6f81a74ef7d7b7102f"
     },
     {
       "file": "diagrams/node-registry.yaml",
-      "sha256": "f2b8ec144a0a2acf9e5a8733091b543845fae80cc48ee6fbc687fe8c3bc992cf"
+      "sha256": "9b989f220f464533bce927a403d1883d43f9194b9f0662738c012bf5506abec0"
     },
     {
       "file": "diagrams/render-config.json",
@@ -167,11 +173,11 @@
     },
     {
       "file": "diagrams/rendered/01-user-journey.png",
-      "sha256": "11761911ba7d832695bda300c4c07c813aeb233e78ac17457c478d77ea184a4a"
+      "sha256": "3d338b10d512911d04f6f083019e3adfd019e3c435ff16a650ff997eea8496ff"
     },
     {
       "file": "diagrams/rendered/01-user-journey.svg",
-      "sha256": "70798208ef08e5f18d1eaf093f51a4b8ffe4a3f30072ae83178febf78e8d7c13"
+      "sha256": "3640a99761550f4e0768d0de5675c37136ea4557049f382d3297877ade88c84a"
     },
     {
       "file": "diagrams/rendered/02-system-architecture.png",
@@ -207,7 +213,7 @@
     },
     {
       "file": "diagrams/source/01-user-journey.mmd",
-      "sha256": "48363805e8e6fa72e0c72fb8fa1fbc487eeb272f7c40dec970fd3c9714988064"
+      "sha256": "316bec9eb7aa293593442a73798aa36eeee5118705af6a55bc19d5d61630ccfc"
     },
     {
       "file": "diagrams/source/02-system-architecture.mmd",
@@ -231,19 +237,27 @@
     },
     {
       "file": "docs/authorship-and-scope.md",
-      "sha256": "0d59089d0e3fa280139e3bb4c439b6a2f6bdf9443b4e5dc3efc261e940c941a4"
+      "sha256": "ecafcb22440b0c9f1444bdb0748c7d282887af1c36b68b3784394359fdf7f721"
     },
     {
       "file": "docs/engineering-decisions.md",
-      "sha256": "ce5249f46f6303f552463e815bca3fb839fd48a37bed88b8f1541442214e04a2"
+      "sha256": "81ddbbd50dd57fc905702c1dde38e0c2385e074b999cb9764ac48d873e429b05"
+    },
+    {
+      "file": "docs/platform-context.md",
+      "sha256": "c777f89771355d82d1a34b403142859568b0817347f1fc3da8968689edcacecf"
     },
     {
       "file": "docs/validation.md",
-      "sha256": "fd74ce4be3018cb7bbaf72135214595f02d00be198ea0a6ea4749960ab9cb74b"
+      "sha256": "fb11779acf8714072afc372f3a86f7e607d0035c2767f0f7075aa15530546996"
     },
     {
       "file": "scripts/check.mjs",
-      "sha256": "8656de522b33fe9f73168ee1b44f9e23f0616aae904ed2a81e11ab025a35c92e"
+      "sha256": "3eea6c2878a8debd0ec677d3ab52028f375c7e20216bc5b8826f771df9146a78"
+    },
+    {
+      "file": "scripts/check.test.mjs",
+      "sha256": "9a31683594634ac065cff8ec67a86ab16bb2ecc7e3476a21d634e3d75b5b5360"
     },
     {
       "file": "scripts/render-diagrams.sh",

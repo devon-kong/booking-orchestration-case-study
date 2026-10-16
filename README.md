@@ -1,63 +1,71 @@
-# Booking Orchestration
+# China Railway 12306 — Booking Orchestration
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-### A reliability-focused engineering case study
+**Reliable business automation · Node.js CLI · Task orchestration · Fault recovery**
 
-A personal engineering project exploring reliable booking workflows: coordinating long-running tasks, session health, controlled submission, and recovery from uncertain outcomes. This repository presents selected architecture, engineering decisions and sanitized evidence from a 12306 booking project. The platform-specific implementation remains private.
+A personal engineering project for China Railway 12306, China's official railway ticketing platform. I designed the product flows, architecture and recovery model, directed implementation, and owned acceptance.
 
-**The outcome:** a documented local CLI architecture, implementation-backed reliability mechanisms, historical offline acceptance, and two bounded examples of actual use reaching manual payment or prepayment handoff. Each result below has an explicit version and scope.
+**Selected Direct and HouBu workflows completed real-platform validation**, reaching the following handoffs in the documented historical builds:
 
-## The problem
-
-A booking workflow may wait for hours, observe changing inventory, lose a response after a side effect, or stop while a request is already in flight. Multiple tasks share an account, but a query hit does not grant permission to submit. Users need to know what happened, what remains uncertain, and what they can safely do next.
-
-These challenges also appear in appointment systems, order processing, inventory reservation and business automation.
-
-## The user journey
-
-![From preparation to a verified result](diagrams/rendered/01-user-journey.svg)
-
-The user selects a precise target and **Direct or HouBu**. The system accepts the task, waits or observes, checks execution eligibility, and evaluates official evidence. Direct ends at awaiting payment; HouBu ends at awaiting prepayment. Payment stays manual. An uncertain result is preserved for reconciliation rather than blindly resubmitted.
-
-## My role
-
-I defined the product boundaries and user flows, designed the architecture and recovery model, directed AI-assisted development, challenged results with failure scenarios, and owned acceptance decisions. This is a personal project rather than a client commission. [Contribution and public scope →](docs/authorship-and-scope.md)
-
-## Three engineering highlights
-
-- **Recover the original intention after lost responses.** Stable request identity handles duplicate task acceptance; a durable per-Attempt FINAL barrier addresses external submission. Unknown outcomes do not receive a new submission allowance. [Decision and trade-offs →](docs/engineering-decisions.md#1-prevent-duplicate-submission-without-inventing-certainty)
-- **Share observations while isolating execution.** One Core merges inventory work and coordinates tasks. Private Candidate, account activity and authorization remain subject to admission checks. [Decision and trade-offs →](docs/engineering-decisions.md#2-share-inventory-facts-while-keeping-execution-private)
-- **Make scheduling and control understandable.** Deadline-aware wake planning feeds the existing scheduler; stop, reconcile and continue represent different user intentions. Two short source excerpts show the implementation approach. [Decision and code excerpts →](docs/engineering-decisions.md#3-schedule-around-deadlines-and-explain-control-precisely)
-
-## How the system is organized
-
-![One Core, an independent Renewer, and shared local mechanisms](diagrams/rendered/02-system-architecture.svg)
-
-JavaScript ES Modules · Node.js CLI · built-in Node test runner · local durable business facts · explicit Session/activity ownership.
-
-One Booking Core coordinates multiple Campaigns. An independent Renewer maintains session health. Shared mechanisms constrain inventory dispatch, session writes and durable facts across entries. The image is a design view, not an assertion that every branch has been validated online. [Architecture and real code map →](docs/architecture.md)
-
-## Evidence and boundaries
-
-| Evidence | What was established | Boundary |
+| Workflow | Observed online result | Evidence |
 | --- | --- | --- |
-| [Historical offline acceptance](assets/evidence/historical-offline.md) | A fixed 2026-09-20 build: 21 gates and 1,494 tests recorded as passed | Historical offline scope; not the current source or online acceptance |
-| [Controlled Direct use](assets/evidence/controlled-use.md#h-direct--awaiting-payment) | One 2026-09-28 awaiting-payment result with one FINAL dispatch | No automatic payment; no all-target or long-term guarantee |
-| [Controlled HouBu use](assets/evidence/controlled-use.md#h-houbu--awaiting-prepayment) | One 2026-09-27 awaiting-prepayment result, attributed to the original Attempt | Prepayment handoff is not ticket fulfillment; historical reporting limitations remain |
-| [Checks of this edition](assets/evidence/local-checks.json) | Published excerpt checks, synthetic function cases, links and export inventories | Documentation checks, not a rerun of private business tests |
+| **Direct booking** | Order created → **awaiting manual payment** | [2026-09-28 run](assets/evidence/controlled-use.md#h-direct--awaiting-payment) |
+| **HouBu · official waitlist** | Attributed waitlist request → **awaiting manual prepayment** | [2026-09-27 run](assets/evidence/controlled-use.md#h-houbu--awaiting-prepayment) |
 
-The historical products differ from the source snapshot used to prepare this case study. Their successes, earlier failures and limitations remain separate. Full private runtime bundles are not included. [Validation methods and uncovered areas →](docs/validation.md)
+These were actual platform runs. Payment, ticket fulfillment and continuous production reliability are outside the demonstrated scope. This repository shares selected architecture, implementation examples and sanitized evidence; the booking implementation remains private.
 
-## Explore further
+## Why this is hard
 
-- [Five diagrams: editable sources, SVG and portfolio PNG exports](diagrams/README.md)
-- [Architecture, state ownership and implementation areas](docs/architecture.md)
-- [Three engineering decisions and two verbatim source excerpts](docs/engineering-decisions.md)
-- [Validation matrix and reproducible public checks](docs/validation.md)
-- [Authorship, AI-assisted development and retained private scope](docs/authorship-and-scope.md)
-- [Inspected source identities](assets/evidence/source-catalog.json)
+During **Chinese New Year (Spring Festival)** and **National Day**, travel demand concentrates on particular dates and routes, making popular trains difficult to book. [Official platform and holiday context →](docs/platform-context.md)
 
-To check the public material locally: `node scripts/check.mjs`. To regenerate diagram exports with an existing Mermaid CLI: `bash scripts/render-diagrams.sh`.
+The engineering challenge extends beyond detecting a seat:
 
-Copyright © 2026 Devon. All rights reserved. This case study does not distribute an installable booking client.
+- **Time and changing inventory:** wait for sale, observe availability and recheck before acting.
+- **Shared account, separate intentions:** coordinate tasks and session health without confusing inventory with permission to submit.
+- **Uncertain side effects:** a timeout can hide an existing order; retries must preserve identity and prevent duplicate submission.
+
+The same problems arise in appointment systems, order processing and inventory reservation.
+
+## What I built
+
+A local CLI system that accepts a fixed target, coordinates long-running tasks, maintains session health, guards each execution step and reports the next safe action. **Direct and HouBu are explicit user choices**, with no automatic switch between them. Payment remains manual.
+
+## How it works
+
+![From session preparation to Direct or HouBu payment handoff](diagrams/rendered/01-user-journey.svg)
+
+Acceptance confirms a task, not a booking. Both paths require current eligibility, controlled submission and attributed official evidence. An unresolved outcome stays **UNKNOWN** and cannot trigger blind resubmission. [Control and recovery →](docs/architecture.md#control-and-uncertainty)
+
+## System architecture
+
+![One Booking Core, an independent Renewer and shared durable mechanisms](diagrams/rendered/02-system-architecture.svg)
+
+**JavaScript ES Modules · Node.js · durable local state · built-in Node test runner**
+
+One Booking Core schedules multiple Campaigns; an independent Renewer maintains session health. A shared query gate coordinates inventory requests, while durable facts preserve task identity, submission allowance and local occupancy across interruptions. [Responsibilities and actual code map →](docs/architecture.md)
+
+## Three engineering decisions
+
+| Challenge | Design choice and user value | Detail |
+| --- | --- | --- |
+| Lost responses and duplicate actions | Stable request identity plus a durable FINAL barrier recover existing work without blindly submitting again | [Failure scenario and traceability](docs/engineering-decisions.md#reliability-walkthrough-unknown-does-not-mean-retry) |
+| Overlapping tasks | Share safe inventory observations; keep private execution and authorization separate | [Scheduling and admission](docs/engineering-decisions.md#2-share-inventory-facts-while-keeping-execution-private) |
+| Deadlines and recovery controls | Wake for nearby deadlines through one scheduler; distinguish inspect, stop, reconcile and continue | [Trade-offs and source excerpts](docs/engineering-decisions.md#3-schedule-around-deadlines-and-explain-control-precisely) |
+
+## Validation and my contribution
+
+The online handoffs above are the main business results. Earlier [offline acceptance](assets/evidence/historical-offline.md) recorded **21 gates and 1,494 passing tests** for a separate fixed 2026-09-20 build. [Public-edition checks](assets/evidence/local-checks.json) verify this repository and two small pure functions; they do not rerun private integration tests. [Versions, failures and uncovered areas →](docs/validation.md)
+
+I owned requirements, architecture, failure scenarios and acceptance, using AI-assisted implementation and technical review. [Authorship and retained private scope →](docs/authorship-and-scope.md)
+
+**Explore:** [Five editable diagrams](diagrams/README.md) · [Engineering decisions](docs/engineering-decisions.md) · [Visual evidence plan](docs/validation.md#visual-evidence-follow-up)
+
+<details>
+<summary>Reproduce the public checks</summary>
+
+Run `node scripts/check.mjs` with Node.js. No credentials or private-project access are required. Diagram regeneration and check-record maintenance are described in [validation](docs/validation.md#reproduce-the-public-checks).
+
+</details>
+
+Independent personal project; not affiliated with or endorsed by China Railway. Copyright © 2026 Devon. All rights reserved.

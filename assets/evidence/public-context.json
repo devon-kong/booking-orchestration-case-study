@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "accessedOn": "2026-10-16",
+  "scope": "External platform background only; no source here validates this project or its performance.",
+  "sources": [
+    {
+      "id": "P01",
+      "publisher": "China Railway 12306",
+      "title": "Official English ticketing website",
+      "url": "https://www.12306.cn/en/index.html",
+      "claims": [
+        "12306 provides official online railway ticketing and journey information."
+      ]
+    },
+    {
+      "id": "P02",
+      "publisher": "Shanghai Municipal Government",
+      "title": "Train ticket sales begin for Spring Festival travel rush",
+      "publishedOn": "2026-01-19",
+      "url": "https://english.shanghai.gov.cn/en-LatestNews/20260119/50214166c9ec4d9492a780526c3a0268.html",
+      "claims": [
+        "Spring Festival creates concentrated railway travel demand; tickets are sold through official railway channels."
+      ]
+    },
+    {
+      "id": "P03",
+      "publisher": "Beijing Municipal Government portal, reporting China Railway passenger operations",
+      "title": "National Day and Mid-Autumn holiday train tickets go on sale",
+      "publishedOn": "2025-09-16",
+      "url": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202509/t20250916_4202777.html",
+      "claims": [
+        "Holiday demand concentrates on particular dates and routes, increasing ticket scarcity; the report recommends official waitlisting."
+      ]
+    },
+    {
+      "id": "P04",
+      "publisher": "China Railway 12306",
+      "title": "Internet ticketing FAQ",
+      "url": "https://kyfw.12306.cn/otn/gonggao/onlineBooking.html",
+      "claims": [
+        "The platform supports inventory queries, booking and waitlisting; registered identity is required and reserved seats require payment within the displayed time."
+      ]
+    }
+  ]
+}

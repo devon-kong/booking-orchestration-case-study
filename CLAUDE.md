@@ -11,7 +11,7 @@
 - Keep Direct and HouBu explicit choices; payment remains manual.
 - Use stable diagram identities in diagrams/node-registry.yaml.
 - Edit Mermaid sources and regenerate exports; never hand-edit SVG output.
-- Keep all public links relative and usable without access to the private project.
+- Keep internal links relative; allow catalogued official background references via HTTPS.
 - Never include credentials, passenger details, order identifiers, private paths, or raw responses.
 - Code excerpts must state whether they are verbatim, adapted, or pseudocode.
 - Do not add a permissive license, commit, push, or publish without explicit authorization.

@@ -24,14 +24,31 @@ An Attempt then freezes its input and records attributable Hold before possible 
 
 ![Attempt and uncertainty](../diagrams/rendered/04-attempt-and-uncertainty.svg)
 
-This **illustrative event sequence is not a captured run**:
+### Reliability walkthrough: UNKNOWN does not mean retry
 
-| Event | Supported interpretation | Next action |
-| --- | --- | --- |
-| Accepted facts commit; stdout ACK is lost | The task may already exist | Recover the same request identity |
-| FINAL barrier commits; response is unavailable | Remote outcome is unknown; allowance remains consumed | Preserve the original Attempt; do not replay FINAL |
-| Bounded authority read is incomplete | Absence of proof is not proven failure | Keep UNKNOWN and explain the unresolved evidence |
-| Complete official evidence matches target, attribution and lifecycle | A supported outcome can be committed | Report that outcome without rewriting the original transport event |
+**An illustrative failure scenario, not a captured online run:** the final submission may have reached the platform, but its response is unavailable. The user then tries to continue. The table shows the intended evidence progression; the final row is conditional, not a result observed in the same experiment.
+
+| Point | Durable facts / evidence | Allowed behavior | Trace |
+| --- | --- | --- | --- |
+| Before final dispatch | Original Attempt and fixed input; FINAL allowance consumed | Admit the selected submission once | S01 contract; S13 Attempt facts |
+| Response unavailable | `SUBMIT_UNKNOWN`; FINAL remains taken | Preserve the Attempt; do not infer remote failure or refund FINAL | S01, S07 uncertainty rules |
+| User asks to continue | Last Attempt has `PHASE_UNKNOWN`, or FINAL result is unresolved | Refuse with `CONTINUE_BLOCKED_UNKNOWN`; explain reconciliation | S15 `evaluateContinueEligibility` |
+| Bounded read is empty or incomplete | No sufficient proof resolving the original operation | Remain unresolved; the cited FINAL-unknown fixture keeps Hold even with an exact-empty read | S19 `W4C-V4` assertions |
+| Local Hold is absent | Durable Attempt still says `PHASE_UNKNOWN` | Continue remains blocked; missing occupancy cannot erase the Attempt | S19 `R3` assertions |
+| If complete matching order evidence exists | Target, original-Attempt attribution and official lifecycle agree | Report the attributed result; awaiting payment retains Hold | S19 `W4C-V2` matching-order fixture; separate [Direct online record](../assets/evidence/controlled-use.md#h-direct--awaiting-payment) |
+
+The key implementation rule can be expressed as **adapted pseudocode**, simplified from S15, with earlier validation and other refusal branches omitted:
+
+```text
+if lastAttempt.outcome == PHASE_UNKNOWN:
+    refuse(CONTINUE_BLOCKED_UNKNOWN)
+if result == SUBMIT_UNKNOWN or (FINAL.taken and FINAL.result != EXPLICIT_FAILURE):
+    refuse(CONTINUE_BLOCKED_UNKNOWN)
+```
+
+The inspected implementation is `lib/core/resume-continue.mjs`; the named fixtures are in `tests/w4c-resume-continue.test.mjs`, under the private CLI package. S15 and S19 were read again on **2026-10-16** and their full-file hashes matched the [source catalogue](../assets/evidence/source-catalog.json). No private code was executed. The test assertions are implementation evidence, **not new passing results** or proof that the historical offline total covers them.
+
+The [HouBu online record](../assets/evidence/controlled-use.md#h-houbu--awaiting-prepayment) is a different case: its displayed UNKNOWN came from a later summary-classification overwrite. It is not evidence that an original confirmation response was lost.
 
 ### Cost and boundary
 

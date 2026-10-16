@@ -2,7 +2,7 @@
 // Checks this public edition only. It never imports or runs the private package.
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { readFile, readdir, writeFile, stat } from 'node:fs/promises';
+import { readFile, readdir, writeFile } from 'node:fs/promises';
 import { dirname, extname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import vm from 'node:vm';
@@ -33,7 +33,7 @@ async function inventory(dir = '') {
 }
 const files = await inventory();
 const blobs = new Map(await Promise.all(files.map(async file => [file, await readFile(join(root, file))])));
-const required = ['README.md', 'CLAUDE.md', '.gitignore', 'docs/architecture.md',
+const required = ['README.md', 'README.zh-CN.md', 'CLAUDE.md', '.gitignore', 'docs/architecture.md',
   'docs/engineering-decisions.md', 'docs/validation.md', 'docs/authorship-and-scope.md',
   'diagrams/README.md', 'diagrams/node-registry.yaml', 'diagrams/render-config.json',
   'assets/evidence/source-catalog.json', 'assets/evidence/excerpt-identities.json',
@@ -43,10 +43,19 @@ check('Required public content exists and is nonempty', () => {
   for (const file of required) assert(blobs.get(file)?.length > 0, file);
 });
 check('Maintenance rules fit the 50-line limit', () => assert(blobs.get('CLAUDE.md').toString().trimEnd().split('\n').length <= 50));
-check('README displays exactly two diagrams', () => assert.equal([...blobs.get('README.md').toString().matchAll(/!\[[^\]]*\]\([^)]*\)/g)].length, 2));
+for (const file of ['README.md', 'README.zh-CN.md']) {
+  check(`${file} includes the journey and architecture views`, () => {
+    for (const name of ['01-user-journey', '02-system-architecture']) {
+      assert([...blobs.get(file).toString().matchAll(/!\[[^\]]*\]\(([^)]+)\)/g)]
+        .some(match => match[1] === `diagrams/rendered/${name}.svg`), name);
+    }
+  });
+}
 
-const diagrams = ['01-user-journey', '02-system-architecture', '03-scheduling-and-admission',
+const requiredDiagrams = ['01-user-journey', '02-system-architecture', '03-scheduling-and-admission',
   '04-attempt-and-uncertainty', '05-control-and-recovery'];
+const diagrams = files.filter(file => /^diagrams\/source\/[^/]+\.mmd$/.test(file))
+  .map(file => file.slice('diagrams/source/'.length, -4));
 const exports = [];
 for (const name of diagrams) {
   const source = `diagrams/source/${name}.mmd`;
@@ -63,7 +72,24 @@ for (const name of diagrams) {
     exports.push({ name, sourceSha256: sha(blobs.get(source)), svgSha256: sha(svg), pngSha256: sha(png), pngWidth: width, pngHeight: height });
   });
 }
-check('Exactly five Mermaid source diagrams', () => assert.equal(files.filter(file => file.endsWith('.mmd')).length, 5));
+check('Required Mermaid views remain available', () => requiredDiagrams.forEach(name => assert(diagrams.includes(name), name)));
+
+const officialHosts = new Set(['www.12306.cn', 'kyfw.12306.cn', 'english.shanghai.gov.cn', 'www.beijing.gov.cn']);
+const externalReferences = new Set();
+check('External background references use catalogued official HTTPS pages', () => {
+  const context = JSON.parse(blobs.get('assets/evidence/public-context.json'));
+  assert.equal(context.schemaVersion, 1);
+  assert(/^\d{4}-\d{2}-\d{2}$/.test(context.accessedOn));
+  assert(context.sources.length > 0);
+  const ids = new Set();
+  for (const row of context.sources) {
+    const url = new URL(row.url);
+    assert(url.protocol === 'https:' && !url.username && !url.password && !url.port && officialHosts.has(url.hostname), row.id);
+    assert(row.id && !ids.has(row.id) && row.title && row.publisher && row.claims?.length, 'Incomplete or duplicate reference');
+    ids.add(row.id);
+    externalReferences.add(row.url);
+  }
+});
 
 function headings(markdown) {
   const result = new Set();
@@ -80,6 +106,7 @@ const phoneNumber = /(?<![\w.])1[3-9]\d{9}(?![\w.])/;
 check('Disclosure matcher ignores decimal SVG geometry', () => assert(!phoneNumber.test('x="259.14990234375"')));
 check('Disclosure matcher still rejects standalone phone text', () => assert(phoneNumber.test('<text>' + ['138', '0013', '8000'].join('') + '</text>')));
 let checkedLinks = 0;
+let checkedExternalLinks = 0;
 for (const [file, bytes] of blobs) {
   const extension = extname(file);
   if (!['.md', '.mmd', '.svg', '.json', '.yaml', '.sh', '.mjs', '.gitignore'].includes(extension) && file !== '.gitignore') continue;
@@ -97,11 +124,15 @@ for (const [file, bytes] of blobs) {
   check(`No unfinished public draft: ${file}`, () => assert(!/\b(?:TODO|TBD|FIXME)\b/.test(text)));
   for (const match of text.matchAll(/!?\[[^\]]*\]\(([^)]+)\)/g)) {
     const target = match[1].replace(/^<|>$/g, '');
-    if (/^https?:/.test(target)) { failures.push({ name: `Link in ${file}`, error: 'Use local public evidence instead of external/private dependencies' }); continue; }
+    if (/^https?:/i.test(target)) {
+      check(`External reference ${++checkedExternalLinks}: ${file}`, () => assert(externalReferences.has(target), 'External link must match a catalogued official HTTPS source'));
+      continue;
+    }
     const [pathPart, fragment] = target.split('#');
     const resolved = resolve(root, dirname(file), decodeURIComponent(pathPart || ''));
     const linked = pathPart ? relative(root, resolved) : file;
     check(`Link ${++checkedLinks}: ${file} -> ${target}`, () => {
+      assert(!/^[a-z][a-z0-9+.-]*:/i.test(target), 'Unsupported link scheme');
       assert(!linked.startsWith('..') && !target.startsWith('/'), 'Link escapes this repository');
       if (record && linked === recordPath && !blobs.has(linked)) return;
       assert(blobs.has(linked), `Missing linked file: ${linked}`);
@@ -148,8 +179,16 @@ const pureCases = [
   ['clock: nonfinite difference is uncertain', () => assert.equal(clock({wallMs:10000,monoMs:5000},{wallMs:NaN,monoMs:5050}).reason,'WALL_CLOCK_JUMP')],
 ];
 for (const [name, fn] of pureCases) check(name, fn);
+const publicInputFiles = files.filter(file => file !== recordPath).map(file => ({file,sha256:sha(blobs.get(file))}));
+if (!record) check('Recorded public inputs match this edition', () => {
+  assert(blobs.has(recordPath), 'Missing record; run node scripts/check.mjs --record');
+  const previous = JSON.parse(blobs.get(recordPath));
+  assert.equal(previous.schemaVersion, 2, 'Old record format; run node scripts/check.mjs --record');
+  assert.equal(previous.result, 'PASS');
+  assert.deepEqual(previous.publicInputFiles, publicInputFiles, 'Stale record; run node scripts/check.mjs --record after reviewing changes');
+});
 const report = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   result: failures.length ? 'FAIL' : 'PASS',
   checkedAt: new Date().toISOString(),
   runtime: process.version,
@@ -157,11 +196,14 @@ const report = {
   checksPassed: checks.length,
   failures,
   relativeLinksChecked: checkedLinks,
+  externalReferencesChecked: checkedExternalLinks,
+  recordFreshness: record ? (failures.length ? 'NOT_WRITTEN' : 'REFRESHED')
+    : checks.some(row => row.name === 'Recorded public inputs match this edition') ? 'CURRENT' : 'STALE',
   pureFunctionCases: pureCases.length,
   pureFunctionResults: checks.filter(row => /^(wake|clock):/.test(row.name)),
   diagramExports: exports,
-  publicInputFiles: files.filter(file => file !== recordPath).map(file => ({file,sha256:sha(blobs.get(file))})),
+  publicInputFiles,
 };
 if (record && !failures.length) await writeFile(join(root, recordPath), JSON.stringify(report, null, 2) + '\n');
-console.log(JSON.stringify({result:report.result,checksPassed:report.checksPassed,relativeLinksChecked:checkedLinks,pureFunctionCases:pureCases.length,diagramPairs:exports.length,failures}, null, 2));
+console.log(JSON.stringify({result:report.result,checksPassed:report.checksPassed,relativeLinksChecked:checkedLinks,externalReferencesChecked:checkedExternalLinks,recordFreshness:report.recordFreshness,pureFunctionCases:pureCases.length,diagramPairs:exports.length,failures}, null, 2));
 if (failures.length) process.exitCode = 1;

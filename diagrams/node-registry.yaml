@@ -319,3 +319,17 @@ nodes:
     mermaid_id: CS_36
     definition: "Establish exclusive ownership and reread durable facts; physical cleanup does not release business Hold."
     source_refs: "S01,S08"
+  CS-37:
+    label: "Direct: check, submit, verify"
+    kind: action
+    domain: CS
+    mermaid_id: CS_37
+    definition: "Business-overview aggregation of the explicitly selected Direct path: eligibility and identity checks, guarded submission, and official evidence assessment; success reaches awaiting manual payment."
+    source_refs: "S01,S03,S22"
+  CS-38:
+    label: "HouBu: check, submit, verify"
+    kind: action
+    domain: CS
+    mermaid_id: CS_38
+    definition: "Business-overview aggregation of the explicitly selected HouBu path: eligibility and identity checks, guarded submission, and official evidence assessment; success reaches awaiting manual prepayment, not fulfillment."
+    source_refs: "S01,S03,S24"

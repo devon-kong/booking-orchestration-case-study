@@ -1,6 +1,6 @@
 # Five views of one system
 
-Start with the user journey, then the architecture. The remaining views explain particular engineering decisions. All five are **public design projections**, inspected against the written HTTP contract on 2026-10-15; none is a full runtime state machine or an online acceptance result.
+Start with the user journey, then the architecture. The remaining views explain particular engineering decisions. All five are **public design projections**, based on the written HTTP contract inspected on 2026-10-15 (journey presentation revised on 2026-10-16); none is a full runtime state machine or an online acceptance result.
 
 | View | Question and diagram type | Source basis | Main trade-off |
 | --- | --- | --- | --- |
@@ -14,7 +14,7 @@ Source IDs resolve in the [catalogue](../assets/evidence/source-catalog.json). F
 
 ## Reading the abstractions
 
-- **01:** “Receive task acceptance” is not booking success. “Run the selected path” means exactly the chosen Direct or HouBu path. The failure outlet reports a result; it does not grant a retry.
+- **01:** Human-assisted session preparation precedes the pictured task flow. “Receive task acceptance” is not booking success. The selected Direct or HouBu path uses the same admission and evidence requirements, but leads to different manual payment handoffs. The two successful outlets describe evidence matching the previously selected path, not an automatic switch. The failure outlet does not grant a retry.
 - **02:** Arrows show selected dependencies, not a complete call graph or write-permission matrix. Core-to-platform is non-inventory protocol/authority access; inventory uses the gate. The Renewer has its own bounded request rules. SessionStore and activity are grouped to keep the overview small; their lifecycles differ.
 - **03:** The two gate outlets describe anonymous and authenticated request types, not parallel dispatch. The observation return illustrates shared facts and subsequent scheduling. A new Hold still requires checks at the final controlled commit. Waiting for the gate cannot hold account activity. Fair observation continues under an existing Hold.
 - **04:** “Complete supporting evidence” includes target, attribution, lifecycle and stage-specific predicates. It can establish an order or a proven failure. A TTL or complete strict-empty local-release decision cannot convert the original UNKNOWN into remote failure. The final outlet is an independent normal-control decision, not permission for resume to create another Attempt.
@@ -40,6 +40,7 @@ To regenerate with an existing Mermaid CLI installation:
 
 ```sh
 bash scripts/render-diagrams.sh
+node scripts/check.mjs --record
 node scripts/check.mjs
 ```
 
