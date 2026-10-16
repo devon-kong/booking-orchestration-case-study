@@ -4,20 +4,20 @@
 
 **Reliable business automation · Node.js CLI · Task orchestration · Fault recovery**
 
-A personal engineering project for China Railway 12306, China's official railway ticketing platform. I designed the product flows, architecture and recovery model, directed implementation, and owned acceptance.
+A Node.js CLI that coordinates scheduled ticket-booking tasks on China Railway 12306, China's official railway ticketing platform. I designed the product flows, architecture and recovery model, directed implementation, and owned acceptance.
 
 **Selected Direct and HouBu workflows completed real-platform validation**, reaching the following handoffs in the documented historical builds:
 
 | Workflow | Observed online result | Evidence |
 | --- | --- | --- |
 | **Direct booking** | Order created → **awaiting manual payment** | [2026-09-28 run](assets/evidence/controlled-use.md#h-direct--awaiting-payment) |
-| **HouBu · official waitlist** | Attributed waitlist request → **awaiting manual prepayment** | [2026-09-27 run](assets/evidence/controlled-use.md#h-houbu--awaiting-prepayment) |
+| **HouBu · official waitlist** | Waitlist request confirmed → **awaiting manual prepayment** | [2026-09-27 run](assets/evidence/controlled-use.md#h-houbu--awaiting-prepayment) |
 
 These were actual platform runs. Payment, ticket fulfillment and continuous production reliability are outside the demonstrated scope. This repository shares selected architecture, implementation examples and sanitized evidence; the booking implementation remains private.
 
 ## Why this is hard
 
-During **Chinese New Year (Spring Festival)** and **National Day**, travel demand concentrates on particular dates and routes, making popular trains difficult to book. [Official platform and holiday context →](docs/platform-context.md)
+During **Chinese New Year (Spring Festival)** and **National Day**, demand concentrates on popular dates and routes. A railway research institute’s **2026-10-15 official report** records **302 million passenger journeys** across the national railway from September 23 to October 8, and **29.737 million tickets sold on September 23**. These are railway travel and sales totals, not concurrent users or this project’s throughput. [Official source and definitions →](docs/platform-context.md#p05--2026-holiday-scale)
 
 The engineering challenge extends beyond detecting a seat:
 
@@ -59,7 +59,7 @@ The online handoffs above are the main business results. Earlier [offline accept
 
 I owned requirements, architecture, failure scenarios and acceptance, using AI-assisted implementation and technical review. [Authorship and retained private scope →](docs/authorship-and-scope.md)
 
-**Explore:** [Five editable diagrams](diagrams/README.md) · [Engineering decisions](docs/engineering-decisions.md) · [Visual evidence plan](docs/validation.md#visual-evidence-follow-up)
+**Explore:** [Five editable diagrams](diagrams/README.md) · [Engineering decisions](docs/engineering-decisions.md) · [Product screenshots: pending](docs/validation.md#visual-evidence-follow-up)
 
 <details>
 <summary>Reproduce the public checks</summary>

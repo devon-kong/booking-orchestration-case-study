@@ -1,13 +1,13 @@
 {
   "schemaVersion": 2,
   "result": "PASS",
-  "checkedAt": "2026-10-16T03:02:42.917Z",
+  "checkedAt": "2026-10-16T06:53:31.492Z",
   "runtime": "v26.8.2",
   "verificationScope": "Public case-study consistency and two published pure functions; not private product or online validation.",
-  "checksPassed": 173,
+  "checksPassed": 174,
   "failures": [],
   "relativeLinksChecked": 95,
-  "externalReferencesChecked": 4,
+  "externalReferencesChecked": 5,
   "recordFreshness": "REFRESHED",
   "pureFunctionCases": 17,
   "pureFunctionResults": [
@@ -83,11 +83,11 @@
   "diagramExports": [
     {
       "name": "01-user-journey",
-      "sourceSha256": "316bec9eb7aa293593442a73798aa36eeee5118705af6a55bc19d5d61630ccfc",
-      "svgSha256": "3640a99761550f4e0768d0de5675c37136ea4557049f382d3297877ade88c84a",
-      "pngSha256": "3d338b10d512911d04f6f083019e3adfd019e3c435ff16a650ff997eea8496ff",
-      "pngWidth": 2158,
-      "pngHeight": 928
+      "sourceSha256": "4514861806e8b89ad4b39dc0bffc6941a162c4c9f7ad8c56f01b4f1686a940a4",
+      "svgSha256": "d9c086fa1f6610f966d58738d4be8cde67e9f6d521f7e3b368120ace9b77ab5e",
+      "pngSha256": "550979a4516024cb3bed80b0180710b44cb7bbf5d47617279be1f205f6197d42",
+      "pngWidth": 2260,
+      "pngHeight": 1134
     },
     {
       "name": "02-system-architecture",
@@ -133,11 +133,11 @@
     },
     {
       "file": "README.md",
-      "sha256": "ed72f349955bf9fabeea220aa990d87dd37553db48a2fe68b8a635c8e2b4be62"
+      "sha256": "4c7026a53302a0949f0848cbfcf409cde57c376236794780427b77e625700f00"
     },
     {
       "file": "README.zh-CN.md",
-      "sha256": "5dddccd5cece7e531277c75021fe04824470b0d8f69698af914f4ee1e1ddbb06"
+      "sha256": "8c22d0bdf3216a64ca6d4808358a8a54ebcc82633a013893926d813636ca4933"
     },
     {
       "file": "assets/evidence/controlled-use.md",
@@ -153,7 +153,7 @@
     },
     {
       "file": "assets/evidence/public-context.json",
-      "sha256": "12e3ec2a87bd82e767beae79c16e4b708ac3143df500a054e7dffbc8c8577a82"
+      "sha256": "8a080b1fc6855d3b8e1f1518f47c6315e7f49b410f0572ca6c70928f5010fdef"
     },
     {
       "file": "assets/evidence/source-catalog.json",
@@ -161,11 +161,11 @@
     },
     {
       "file": "diagrams/README.md",
-      "sha256": "17e464eec30e07d50ffb8dc752a22e0bf2a1fe5bc4d16f6f81a74ef7d7b7102f"
+      "sha256": "2d4e8995d75e379959bdb737357bde09a165c6def3a394500b07f2bd5a1f9169"
     },
     {
       "file": "diagrams/node-registry.yaml",
-      "sha256": "9b989f220f464533bce927a403d1883d43f9194b9f0662738c012bf5506abec0"
+      "sha256": "f6a02d6a2495b4da444e780c9adaf006f7f288e06a55135f0f951408b0f02d47"
     },
     {
       "file": "diagrams/render-config.json",
@@ -173,11 +173,11 @@
     },
     {
       "file": "diagrams/rendered/01-user-journey.png",
-      "sha256": "3d338b10d512911d04f6f083019e3adfd019e3c435ff16a650ff997eea8496ff"
+      "sha256": "550979a4516024cb3bed80b0180710b44cb7bbf5d47617279be1f205f6197d42"
     },
     {
       "file": "diagrams/rendered/01-user-journey.svg",
-      "sha256": "3640a99761550f4e0768d0de5675c37136ea4557049f382d3297877ade88c84a"
+      "sha256": "d9c086fa1f6610f966d58738d4be8cde67e9f6d521f7e3b368120ace9b77ab5e"
     },
     {
       "file": "diagrams/rendered/02-system-architecture.png",
@@ -213,7 +213,7 @@
     },
     {
       "file": "diagrams/source/01-user-journey.mmd",
-      "sha256": "316bec9eb7aa293593442a73798aa36eeee5118705af6a55bc19d5d61630ccfc"
+      "sha256": "4514861806e8b89ad4b39dc0bffc6941a162c4c9f7ad8c56f01b4f1686a940a4"
     },
     {
       "file": "diagrams/source/02-system-architecture.mmd",
@@ -245,19 +245,19 @@
     },
     {
       "file": "docs/platform-context.md",
-      "sha256": "c777f89771355d82d1a34b403142859568b0817347f1fc3da8968689edcacecf"
+      "sha256": "0c14458dcc1061a8ef0fc0aba7edf11b4b962f221883f5e660d0355cbdadd940"
     },
     {
       "file": "docs/validation.md",
-      "sha256": "fb11779acf8714072afc372f3a86f7e607d0035c2767f0f7075aa15530546996"
+      "sha256": "b490b288fc87aaf95625fa0a2edc00585c70582bd0787b60d36e0eac327cee56"
     },
     {
       "file": "scripts/check.mjs",
-      "sha256": "3eea6c2878a8debd0ec677d3ab52028f375c7e20216bc5b8826f771df9146a78"
+      "sha256": "266acd55254b4413faef7ef600636e31af77d3f806d1ba21352ec33eccc4ffea"
     },
     {
       "file": "scripts/check.test.mjs",
-      "sha256": "9a31683594634ac065cff8ec67a86ab16bb2ecc7e3476a21d634e3d75b5b5360"
+      "sha256": "a4f6280822dd86d2238565b28da7b3ae33e37bc830705eeb4f68c80be4326c04"
     },
     {
       "file": "scripts/render-diagrams.sh",

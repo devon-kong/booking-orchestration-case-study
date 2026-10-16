@@ -40,6 +40,38 @@
       "claims": [
         "The platform supports inventory queries, booking and waitlisting; registered identity is required and reserved seats require payment within the displayed time."
       ]
+    },
+    {
+      "id": "P05",
+      "publisher": "China Academy of Railway Sciences Corporation Limited",
+      "title": "再创新高，圆满完成中秋国庆售票保障任务",
+      "publishedOn": "2026-10-15",
+      "url": "https://www.rails.cn/html/news/12/2026/20261015_69462.html",
+      "claims": [
+        "The national railway carried 302 million passenger journeys from 2026-09-23 through 2026-10-08.",
+        "Railway ticket sales reached 29.737 million on 2026-09-23, in the report’s all-channel sales context."
+      ],
+      "metrics": [
+        {
+          "name": "national_railway_passenger_journeys",
+          "value": 302000000,
+          "unit": "passenger journeys",
+          "periodStart": "2026-09-23",
+          "periodEnd": "2026-10-08",
+          "basis": "reported actual; not unique passengers or concurrent users"
+        },
+        {
+          "name": "railway_tickets_sold",
+          "value": 29737000,
+          "unit": "tickets",
+          "periodStart": "2026-09-23",
+          "periodEnd": "2026-09-23",
+          "basis": "reported actual; all-channel context, not internet-only traffic"
+        }
+      ],
+      "exclusions": [
+        "No project throughput, success-rate or concurrent-user inference."
+      ]
     }
   ]
 }

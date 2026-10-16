@@ -1,19 +1,22 @@
 flowchart TB
 %% Public business overview; not a captured run or a protocol state machine.
-%% Human-assisted session preparation precedes this flow.
+%% Human-assisted login/session preparation is not task acceptance.
 %% A path stays fixed; outcome arrows never authorize switching or retrying.
+  CS_01["Prepare session; log in if needed"]
   CS_02["Choose target and path"]
   CS_03["Receive task acceptance"]
   CS_37["Direct: check, submit, verify"]
   CS_38["HouBu: check, submit, verify"]
-  CS_09["Hand over for manual payment"]
+  CS_39["Awaiting Manual Payment"]
+  CS_40["Awaiting Manual Prepayment"]
   CS_10["Report the proven failure"]
   CS_11["Keep UNKNOWN; reconcile"]
+  CS_01 --> CS_02
   CS_02 --> CS_03
   CS_03 -->|Direct: wait until eligible| CS_37
   CS_03 -->|HouBu: wait until eligible| CS_38
-  CS_37 -->|Order awaiting payment| CS_09
-  CS_38 -->|Waitlist awaiting prepayment| CS_09
+  CS_37 -->|Order confirmed| CS_39
+  CS_38 -->|Waitlist request confirmed| CS_40
   CS_37 -->|Proven failure| CS_10
   CS_38 -->|Proven failure| CS_10
   CS_37 -->|Unresolved| CS_11
@@ -21,6 +24,6 @@ flowchart TB
   classDef direct fill:#e7f3ed,stroke:#39765a,color:#173e2d
   classDef houbu fill:#e9f1fc,stroke:#416b9d,color:#17324d
   classDef uncertain fill:#fff1d6,stroke:#ac792e,color:#624318
-  class CS_37 direct
-  class CS_38 houbu
+  class CS_37,CS_39 direct
+  class CS_38,CS_40 houbu
   class CS_11 uncertain

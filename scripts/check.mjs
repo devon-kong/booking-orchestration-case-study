@@ -74,7 +74,7 @@ for (const name of diagrams) {
 }
 check('Required Mermaid views remain available', () => requiredDiagrams.forEach(name => assert(diagrams.includes(name), name)));
 
-const officialHosts = new Set(['www.12306.cn', 'kyfw.12306.cn', 'english.shanghai.gov.cn', 'www.beijing.gov.cn']);
+const officialHosts = new Set(['www.12306.cn', 'kyfw.12306.cn', 'english.shanghai.gov.cn', 'www.beijing.gov.cn', 'www.rails.cn']);
 const externalReferences = new Set();
 check('External background references use catalogued official HTTPS pages', () => {
   const context = JSON.parse(blobs.get('assets/evidence/public-context.json'));

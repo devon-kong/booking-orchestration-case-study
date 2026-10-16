@@ -51,6 +51,7 @@ test('catalogued official references are allowed; arbitrary and lookalike hosts 
   const path = join(dir, 'assets/evidence/public-context.json');
   const context = JSON.parse(await readFile(path, 'utf8'));
   await append(dir, 'README.md', '\n[Official platform](https://www.12306.cn/en/index.html)\n');
+  await append(dir, 'README.md', '\n[Official holiday report](https://www.rails.cn/html/news/12/2026/20261015_69462.html)\n');
   assert.equal(run(dir, '--record').code, 0);
   const validReadme = await readFile(join(dir, 'README.md'), 'utf8');
   await append(dir, 'README.md', '\n[Uncatalogued page](https://www.12306.cn/en/uncatalogued.html)\n');

@@ -68,7 +68,7 @@ nodes:
     definition: "External inventory, booking and authoritative order evidence; not controlled by local state."
     source_refs: "S01,S05"
   CS-01:
-    label: "Prepare the session"
+    label: "Prepare session; log in if needed"
     kind: action
     domain: CS
     mermaid_id: CS_01
@@ -333,3 +333,17 @@ nodes:
     mermaid_id: CS_38
     definition: "Business-overview aggregation of the explicitly selected HouBu path: eligibility and identity checks, guarded submission, and official evidence assessment; success reaches awaiting manual prepayment, not fulfillment."
     source_refs: "S01,S03,S24"
+  CS-39:
+    label: "Awaiting Manual Payment"
+    kind: boundary
+    domain: CS
+    mermaid_id: CS_39
+    definition: "An attributed Direct order awaits payment by the user; payment and ticket fulfillment are not established."
+    source_refs: "S01,S22"
+  CS-40:
+    label: "Awaiting Manual Prepayment"
+    kind: boundary
+    domain: CS
+    mermaid_id: CS_40
+    definition: "An attributed HouBu waitlist request awaits prepayment by the user; this is not a ticket allocation or fulfillment."
+    source_refs: "S01,S24"

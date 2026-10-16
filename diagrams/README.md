@@ -4,7 +4,7 @@ Start with the user journey, then the architecture. The remaining views explain 
 
 | View | Question and diagram type | Source basis | Main trade-off |
 | --- | --- | --- | --- |
-| [01 · User journey](rendered/01-user-journey.svg) · [Mermaid](source/01-user-journey.mmd) · [PNG](rendered/01-user-journey.png) | What happens from preparation to a result? Flowchart | S01, S03 and module boundaries | Fold private protocol steps while keeping explicit path selection, uncertain results and manual payment |
+| [01 · User journey](rendered/01-user-journey.svg) · [Mermaid](source/01-user-journey.mmd) · [PNG](rendered/01-user-journey.png) | What happens from preparation to a result? Flowchart | S01, S03 and module boundaries | Fold private protocol steps while keeping explicit path selection, uncertain results and separate manual payment / prepayment handoffs |
 | [02 · System architecture](rendered/02-system-architecture.svg) · [Mermaid](source/02-system-architecture.mmd) · [PNG](rendered/02-system-architecture.png) | What are the components and owners? Block diagram | S01, S02, S05 | A small local Core with an independent Renewer; shared primitives are not services |
 | [03 · Scheduling and admission](rendered/03-scheduling-and-admission.svg) · [Mermaid](source/03-scheduling-and-admission.mmd) · [PNG](rendered/03-scheduling-and-admission.png) | What may be shared, and what still needs admission? Flowchart | S01, S04, S06, S11, S12 | Sharing inventory reduces repeated work without sharing permission or private Candidate |
 | [04 · Attempt and uncertainty](rendered/04-attempt-and-uncertainty.svg) · [Mermaid](source/04-attempt-and-uncertainty.mmd) · [PNG](rendered/04-attempt-and-uncertainty.png) | What does evidence justify after a possible side effect? Flowchart | S01, S04, S07, S13, S15 | Preserve unresolved facts while evaluating local occupancy independently |
@@ -14,7 +14,7 @@ Source IDs resolve in the [catalogue](../assets/evidence/source-catalog.json). F
 
 ## Reading the abstractions
 
-- **01:** Human-assisted session preparation precedes the pictured task flow. “Receive task acceptance” is not booking success. The selected Direct or HouBu path uses the same admission and evidence requirements, but leads to different manual payment handoffs. The two successful outlets describe evidence matching the previously selected path, not an automatic switch. The failure outlet does not grant a retry.
+- **01:** The pictured flow starts with session preparation and human login if needed. “Receive task acceptance” is not booking success. The selected Direct or HouBu path uses the same admission and evidence requirements, but leads to different manual payment handoffs. Direct ends at “Awaiting Manual Payment”; HouBu ends at “Awaiting Manual Prepayment”, which does not establish ticket allocation. Each successful outlet matches the previously selected path; neither authorizes a switch. The failure outlet does not grant a retry.
 - **02:** Arrows show selected dependencies, not a complete call graph or write-permission matrix. Core-to-platform is non-inventory protocol/authority access; inventory uses the gate. The Renewer has its own bounded request rules. SessionStore and activity are grouped to keep the overview small; their lifecycles differ.
 - **03:** The two gate outlets describe anonymous and authenticated request types, not parallel dispatch. The observation return illustrates shared facts and subsequent scheduling. A new Hold still requires checks at the final controlled commit. Waiting for the gate cannot hold account activity. Fair observation continues under an existing Hold.
 - **04:** “Complete supporting evidence” includes target, attribution, lifecycle and stage-specific predicates. It can establish an order or a proven failure. A TTL or complete strict-empty local-release decision cannot convert the original UNKNOWN into remote failure. The final outlet is an independent normal-control decision, not permission for resume to create another Attempt.
@@ -32,7 +32,7 @@ The older Core views are useful design sources, but their accompanying notes exp
 
 ## Identity and rendering
 
-The [registry](node-registry.yaml) retains upstream BC identities where their component meaning is preserved. CS identities name this repository's explanatory aggregations; they do not allocate or change private-product contract IDs. Labels may evolve, while identities and definitions remain stable. Presentation labels hide IDs for readability.
+The [registry](node-registry.yaml) retains upstream BC identities where their component meaning is preserved. CS identities name this repository's explanatory aggregations; they do not allocate or change private-product contract IDs. Labels may evolve, while identities and definitions remain stable. Presentation labels hide IDs for readability. R1.1 reuses CS-01 for session preparation and adds CS-39/CS-40 for the distinct handoffs; CS-09 remains registered as the earlier combined abstraction and is no longer used in the journey.
 
 The block view answers composition; the flowcharts answer decisions. These are not responsibility swimlanes. There are exactly five selected views; no additional supporting diagram is implied.
 

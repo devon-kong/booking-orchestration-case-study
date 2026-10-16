@@ -67,16 +67,23 @@ The current check record binds the public file bytes and diagram exports. Its ch
 
 ## Visual evidence follow-up
 
-**Current status: textual run summaries and explanatory diagrams only. No real CLI screenshot or result screenshot is included.** The online claims rest on the dated curated summaries, not on pictures of a new run.
+**VISUAL_EVIDENCE_PENDING · checked 2026-10-16.** Textual historical run summaries and explanatory diagrams remain the available evidence. No real CLI or business-result screenshot is included; no picture was reconstructed or presented as a captured run.
 
-| Material to add | Evidence and privacy requirements | Completion criterion |
+A bounded, metadata-only search covered the source project's documentation and diagram image directories and documentation image references. Documentation contained no raster captures; all 327 raster files in the diagram tree were design/preview exports by their locations and names. The conventional assets and screenshots directories were absent. No provenance-qualified product capture was identified, so none was opened, copied or published. This is a search result within those areas, not a claim that no capture exists elsewhere. Private runtime bundles, session stores, raw protocol responses and sensitive logs were excluded.
+
+| Missing material | Evidence and privacy requirements | Completion criterion |
 | --- | --- | --- |
-| One actual CLI workflow capture | Use a retained historical capture if available; tie it to the run date and install label. Remove account, passenger, route, train, task, order and session identifiers, private paths and raw payloads | A legible image shows actual product interaction, with an honest caption identifying the stage and redactions |
-| One Direct/HouBu result comparison | Use authentic retained result captures for the two separately dated runs; label each as historical and preserve manual payment / prepayment boundaries | The viewer can distinguish the two outcomes without reading internal field names |
+| Actual CLI task creation / acceptance or Campaign status capture | Retained historical image tied to a date, historical install label and report; remove account, passenger, route, train, task, order and session identifiers and private paths | Legible actual interaction, with an English caption naming the stage and redactions; acceptance must not imply booking success |
+| Direct result capture | Retained image corresponding to H-DIRECT (2026-09-28), showing the awaiting-payment handoff | Provenance matches the report; no payment or fulfillment inference |
+| HouBu result capture | Retained image corresponding to H-HOUBU (2026-09-27), showing the awaiting-prepayment handoff | Provenance matches the report; no ticket-allocation or fulfillment inference |
 
-Availability of suitable retained captures has not been established. If none exist, any new capture needs a separately authorized live workflow; this documentation revision does not initiate one. A reconstructed text panel must be labelled as a reconstruction, never as a product screenshot. Review the final pixels for privacy before adding an image, then re-record public checks. These images are the remaining presentation improvement for an Upwork upload.
+To close this gap, supply the retained captures plus their date/install/report association. Select at most 2–3 images, irreversibly redact and flatten them, remove metadata, inspect the final exported pixels, and only then place them in `assets/screenshots/` and re-record public checks. No empty screenshot directory or simulated terminal panel is added. This revision authorizes no new live capture workflow.
 
-Suggested repository Topics for a future authorized metadata update: `system-design`, `workflow-orchestration`, `nodejs`, `reliability-engineering`, `fault-tolerance`. No GitHub settings or publication were changed in this revision.
+## Portfolio R1.1 · 2026-10-16
+
+This edition adds the P05 official holiday totals with explicit metric scopes, restores the session-preparation step in the user journey and gives Direct and HouBu separate manual payment / prepayment endpoints. The other four technical views, implementation excerpts and historical run claims are retained. The earlier combined CS-09 identity remains registered; new CS-39/CS-40 identify the distinct handoffs.
+
+The bilingual homepages retain the sequence: outcomes, platform challenge, product, journey, architecture, engineering choices, validation and contribution. The remaining presentation gap is explicitly `VISUAL_EVIDENCE_PENDING`. Publication checks and checker regressions validate the public edition; they do not execute the private product. Review is a solo self-review, not a fresh independent review. The written product contract (S01) was re-read for session and human-payment semantics and still matched its catalogued hash; this is not a refreshed source snapshot. All five exports were regenerated and inspected; the other four SVG/PNG pairs remained byte-identical. A local preview using GitHub-rendered Markdown and approximate GitHub styling was checked at 1440px and 390px widths in both languages, with no page-level horizontal overflow. Diagram detail on a narrow screen can be opened separately for zooming.
 
 ## First-edition verification boundaries
 
